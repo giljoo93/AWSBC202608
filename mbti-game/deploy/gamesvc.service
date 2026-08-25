@@ -1,0 +1,17 @@
+[Unit]
+Description=MBTI game backend (FastAPI)
+After=network.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/home/ec2-user/mbti-game
+Environment=GAME_LLM=bedrock
+Environment=AWS_REGION=us-east-1
+# Bedrock 콘솔 '모델 액세스'에서 활성화한 모델 id로 교체
+Environment=GAME_BEDROCK_MODEL=CHANGE_ME
+ExecStart=/usr/bin/python3.11 -m uvicorn server:app --host 0.0.0.0 --port 8000
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target
