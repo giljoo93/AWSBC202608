@@ -2,7 +2,7 @@
  * 데이터는 api.js 에서만, DOM 은 render.js 에서만 온다. */
 
 import { startGame, sendChoice, askQuestion, backgroundForStep,
-         SCENE_META, TOTAL, TITLE, TITLE_BG, USE_MOCK } from "./api.js";
+         SCENE_META, TOTAL, TITLE, TITLE_BG, ENDING_BG, USE_MOCK } from "./api.js";
 import * as ui from "./render.js";
 
 let sessionId = null;
@@ -102,9 +102,10 @@ function finish(d) {
   playing = false;
   step = TOTAL + 1;
 
-  ui.setChapter(d.background?.title ?? "여정의 끝");
+  const endBg = d.background ?? ENDING_BG;
+  ui.setChapter(endBg?.title ?? "여정의 끝");
   ui.progress(TOTAL + 1, TOTAL, SCENE_META);
-  ui.setBackground(d.background);
+  ui.setBackground(endBg);
   document.querySelector("#log").replaceChildren();
 
   ui.scene(d.epilogue);

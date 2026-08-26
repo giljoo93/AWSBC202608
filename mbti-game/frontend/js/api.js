@@ -8,7 +8,7 @@
  */
 import { STORY } from "./data.js";
 
-export const USE_MOCK = true;
+export const USE_MOCK = false;
 const API_BASE = ""; // CloudFront 배포 시 same-origin
 
 /* ── 실서버 호출 ─────────────────────────────────────────── */
@@ -171,6 +171,9 @@ export function backgroundForStep(step) {
 
 /* 타이틀 화면 배경 — 소환 직전의 도서관 */
 export const TITLE_BG = STORY.prologueBg;
+
+/* 엔딩 배경 — 서버 응답에는 background 가 없으므로 프론트가 채운다 */
+export const ENDING_BG = STORY.endingBg;
 
 export const SCENE_META = STORY.scenes.map((s) => ({ kind: s.kind, axis: s.axis }));
 export const TOTAL = STORY.meta.branches;
