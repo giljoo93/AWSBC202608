@@ -714,5 +714,6 @@
   }
   document.getElementById('fs').addEventListener('click', e => { e.stopPropagation(); toggleFs(); });
 
-  go(0);
+  const h = parseInt(location.hash.slice(1), 10);
+  go(h >= 1 && h <= slides.length ? h - 1 : 0);
 </script>
