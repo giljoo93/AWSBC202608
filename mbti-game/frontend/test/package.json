@@ -1,0 +1,7 @@
+{
+  "name": "mbti-frontend-test",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node playthrough.mjs" },
+  "devDependencies": { "jsdom": "^27.0.0" }
+}

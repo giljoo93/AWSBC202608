@@ -1,173 +1,66 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>차원문 너머 — MBTI 모험</title>
-<style>
-  :root {
-    --bg: #12101c; --panel: #1e1a2e; --bubble: #2a2440; --me: #4c3a8c;
-    --text: #e8e4f5; --dim: #a49ec4; --accent: #8b7bd8; --gold: #d8b45a;
-  }
-  * { box-sizing: border-box; margin: 0; }
-  body {
-    background: var(--bg); color: var(--text);
-    font-family: "Segoe UI", "Malgun Gothic", sans-serif;
-    display: flex; justify-content: center; min-height: 100vh;
-  }
-  #app { width: 100%; max-width: 640px; display: flex; flex-direction: column; padding: 16px; }
-  h1 { font-size: 1.2rem; text-align: center; color: var(--gold); padding: 8px 0 16px; }
-  #progress { text-align: center; color: var(--dim); font-size: .85rem; margin-bottom: 8px; }
-  #log { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; padding-bottom: 12px; }
-  .bubble { background: var(--bubble); border-radius: 12px; padding: 12px 14px; line-height: 1.6; white-space: pre-wrap; max-width: 92%; }
-  .me { background: var(--me); align-self: flex-end; }
-  .mbti-card { border: 1px solid var(--gold); border-radius: 12px; padding: 16px; text-align: center; }
-  .mbti-card .type { font-size: 2.2rem; letter-spacing: .3rem; color: var(--gold); font-weight: 700; }
-  .bar-row { display: grid; grid-template-columns: 1.2rem 1fr 1.2rem; gap: 6px; align-items: center; font-size: .8rem; margin-top: 6px; }
-  .bar { background: var(--bg); border-radius: 4px; height: 10px; overflow: hidden; display: flex; }
-  .bar > i { background: var(--accent); height: 100%; }
-  #controls { padding-top: 12px; display: flex; flex-direction: column; gap: 8px; }
-  button {
-    background: var(--panel); color: var(--text); border: 1px solid var(--accent);
-    border-radius: 10px; padding: 12px; font-size: .95rem; cursor: pointer; text-align: left;
-  }
-  button:hover:not(:disabled) { background: var(--me); }
-  button:disabled { opacity: .4; cursor: default; }
-  #chatbox { display: none; gap: 8px; }
-  #chatbox input {
-    flex: 1; background: var(--panel); color: var(--text);
-    border: 1px solid var(--accent); border-radius: 10px; padding: 12px;
-  }
-  #chatbox button { text-align: center; flex: 0 0 4.5rem; }
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#07060b">
+<title>차원문 너머 — MBTI 분기 게임</title>
+<meta name="description" content="여덟 번의 선택으로 MBTI를 알아보는 이세계 판타지 텍스트 게임">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Gowun+Dodum&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div id="app">
-  <h1>⚔ 차원문 너머</h1>
-  <div id="progress"></div>
-  <div id="log"></div>
-  <div id="controls">
-    <button id="startBtn">모험 시작하기</button>
-    <div id="chatbox"><input id="chatInput" placeholder="당신의 MBTI에 대해 물어보세요"><button id="chatBtn">질문</button></div>
+
+<!-- 배경: 2겹 크로스페이드. 실제 이미지 도입 전까지 CSS 절차적 생성 -->
+<div class="bg-layer" id="bg-a"></div>
+<div class="bg-layer" id="bg-b"></div>
+<div class="bg-grain"></div>
+<!-- 등장인물 입상 — 배경 위, 가독성 베일 아래 -->
+<div class="stage" id="stage" aria-hidden="true"></div>
+
+<div class="bg-veil"></div>
+<div class="bg-vignette"></div>
+
+<div class="shell">
+  <header class="hud hidden" id="hud">
+    <div class="hud-left">
+      <span class="hud-mark">◈</span>
+      <span class="hud-chapter" id="chapter"></span>
+    </div>
+    <div class="hud-right">
+      <div class="dots" id="dots" role="progressbar" aria-label="진행도" aria-valuemin="0"></div>
+      <button class="icon-btn" id="backlog-btn" aria-label="지난 기록 보기" title="지난 기록 (Esc로 닫기)">기록</button>
+    </div>
+  </header>
+
+  <main class="log" id="log" aria-live="polite"></main>
+
+  <div class="controls" id="controls"></div>
+</div>
+
+<!-- 장면 전환 암전 -->
+<div class="curtain" id="curtain"></div>
+
+<!-- 판정 연출 -->
+<div class="judging" id="judging" hidden>
+  <div class="sigil"><span>◈</span></div>
+  <p>차원문이 당신을 읽고 있습니다</p>
+</div>
+
+<!-- 백로그 -->
+<div class="backlog" id="backlog" hidden>
+  <div class="backlog-panel">
+    <header>
+      <h2>지난 기록</h2>
+      <button class="icon-btn" data-close aria-label="닫기">닫기</button>
+    </header>
+    <div class="backlog-body" id="backlog-body"></div>
   </div>
 </div>
-<script>
-const API_BASE = ""; // 배포 시 CloudFront면 그대로, EC2 직접이면 "http://<EC2주소>:8000"
 
-const log = document.getElementById("log");
-const progress = document.getElementById("progress");
-const controls = document.getElementById("controls");
-const startBtn = document.getElementById("startBtn");
-const chatbox = document.getElementById("chatbox");
-const chatInput = document.getElementById("chatInput");
-const chatBtn = document.getElementById("chatBtn");
-let sessionId = null;
-
-function bubble(text, cls = "") {
-  const d = document.createElement("div");
-  d.className = "bubble " + cls;
-  d.textContent = text;
-  log.appendChild(d);
-  d.scrollIntoView({ behavior: "smooth" });
-  return d;
-}
-
-async function api(path, body) {
-  const res = await fetch(API_BASE + path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: body ? JSON.stringify(body) : "{}",
-  });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.detail || "요청 실패");
-  return data;
-}
-
-function showChoices(choices) {
-  choices.forEach(c => {
-    const b = document.createElement("button");
-    b.textContent = `${c.key}. ${c.label}`;
-    b.onclick = () => pick(c);
-    controls.insertBefore(b, chatbox);
-  });
-}
-
-function clearChoices() {
-  controls.querySelectorAll("button:not(#chatBtn)").forEach(b => b.remove());
-}
-
-async function pick(c) {
-  controls.querySelectorAll("button:not(#chatBtn)").forEach(b => b.disabled = true);
-  bubble(c.label, "me");
-  try {
-    const d = await api("/api/game/choice", { session_id: sessionId, choice: c.key });
-    clearChoices();
-    if (!d.done) {
-      progress.textContent = `분기 ${d.step} / ${d.total}`;
-      bubble(d.narration);
-      showChoices(d.choices);
-    } else {
-      finish(d);
-    }
-  } catch (e) {
-    clearChoices();
-    bubble("⚠ " + e.message + "\n새로고침 후 다시 시작해주세요. (세션은 서버 메모리에만 유지됩니다)");
-  }
-}
-
-function finish(d) {
-  progress.textContent = "여정 완료";
-  bubble(d.epilogue);
-  const card = document.createElement("div");
-  card.className = "bubble mbti-card";
-  card.innerHTML = `<div class="type"></div>`;
-  card.querySelector(".type").textContent = d.mbti;
-  [["E","I"],["S","N"],["T","F"],["J","P"]].forEach(([a,b]) => {
-    const total = d.scores[a] + d.scores[b] || 1;
-    const row = document.createElement("div");
-    row.className = "bar-row";
-    row.innerHTML = `<span>${a}</span><div class="bar"><i style="width:${d.scores[a]/total*100}%"></i></div><span>${b}</span>`;
-    card.appendChild(row);
-  });
-  log.appendChild(card);
-  bubble(d.report);
-  bubble("이제 아래 입력창에서 당신의 MBTI에 대해 자유롭게 질문할 수 있습니다.");
-  chatbox.style.display = "flex";
-  chatInput.focus();
-}
-
-startBtn.onclick = async () => {
-  startBtn.disabled = true;
-  try {
-    const d = await api("/api/game/start");
-    sessionId = d.session_id;
-    startBtn.remove();
-    progress.textContent = `분기 ${d.step} / ${d.total}`;
-    bubble(d.narration);
-    showChoices(d.choices);
-  } catch (e) {
-    startBtn.disabled = false;
-    bubble("⚠ 서버에 연결할 수 없습니다: " + e.message);
-  }
-};
-
-async function ask() {
-  const q = chatInput.value.trim();
-  if (!q) return;
-  chatInput.value = "";
-  chatBtn.disabled = true;
-  bubble(q, "me");
-  try {
-    const d = await api("/api/chat", { session_id: sessionId, question: q });
-    bubble(d.answer);
-  } catch (e) {
-    bubble("⚠ " + e.message);
-  }
-  chatBtn.disabled = false;
-  chatInput.focus();
-}
-chatBtn.onclick = ask;
-chatInput.addEventListener("keydown", e => { if (e.key === "Enter") ask(); });
-</script>
+<script type="module" src="js/app.js"></script>
 </body>
 </html>

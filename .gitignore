@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Node (프론트 테스트 전용 — 커밋하지 않는다)
+node_modules/
+package-lock.json
+
+# 구도 스케치 (gen-images.py --sketch all 로 무료 재생성)
+mbti-game/frontend/assets/_sketch/
+
+# 단일 파일 빌드 산출물 (finalplan/build-single-file.py 로 재생성)
+mbti-game/frontend/dist/
+
+# 이미지 생성 스크립트 — AWS 요금이 발생하므로 저장소에 넣지 않는다
+finalplan/gen-images.py
