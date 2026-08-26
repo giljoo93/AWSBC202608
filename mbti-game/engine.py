@@ -34,10 +34,31 @@ def get_scene(step: int) -> dict:
     return STORY["scenes"][step]
 
 
+def store_generated(session: Session, step: int, gen: dict) -> None:
+    """LLM이 생성한 장면을 세션에 저장.
+
+    문구(label/reason)만 생성 결과로 바꾸고, 점수 골격(attr/score)은 반드시
+    원본 storyboard 값을 유지한다 — 판정 공정성은 코드가 지킨다.
+    """
+    base = get_scene(step)
+    session.gen_scenes[step] = {
+        **base,
+        "choices": [
+            {**base["choices"][0], "label": gen["choice_a"], "reason": gen["reason_a"]},
+            {**base["choices"][1], "label": gen["choice_b"], "reason": gen["reason_b"]},
+        ],
+    }
+
+
+def scene_for(session: Session, step: int) -> dict:
+    """이 세션이 실제로 본 장면 — 생성본이 있으면 그것, 없으면 고정 스토리."""
+    return session.gen_scenes.get(step) or get_scene(step)
+
+
 def apply_choice(session: Session, key: str) -> ChoiceRecord:
     if session.step >= BRANCHES:
         raise GameError("이미 종료된 게임입니다.")
-    scene = get_scene(session.step)
+    scene = scene_for(session, session.step)
     choice = next((c for c in scene["choices"] if c["key"] == key), None)
     if choice is None:
         raise GameError(f"잘못된 선택지입니다: {key}")

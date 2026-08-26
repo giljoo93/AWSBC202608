@@ -1,9 +1,12 @@
 """LLM 클라이언트. GAME_LLM=stub(기본)|bedrock.
 
 LLM은 연출·설명만 담당. 점수와 MBTI 판정은 engine.py 코드가 한다 — 모델 출력이
-점수에 영향을 주는 경로는 없다.
+점수에 영향을 주는 경로는 없다. 동적 장면 생성도 문구만 만들 뿐, 어떤 선택이
+몇 점인지는 storyboard.json 골격이 정한다.
 """
+import json
 import os
+import re
 
 GAME_LLM = os.environ.get("GAME_LLM", "stub")
 
@@ -23,6 +26,20 @@ REPORT_SYSTEM = (
     "(판정은 위기 상황 쪽에 더 큰 가중치가 반영된 결과다). "
     "판정된 MBTI를 바꾸거나 다른 타입을 제안하지 않는다. "
     "MBTI는 참고용 성격 지표이며 사람을 단정하지 않는다는 안내로 마무리한다."
+)
+
+SCENE_SYSTEM = (
+    "너는 이세계 판타지 텍스트 게임의 게임 마스터다. 장면 설계도와 세계관 자료, "
+    "플레이어의 지금까지의 선택이 주어지면 이번 장면을 새로 창작한다. "
+    "설계도의 상황 뼈대(장소·사건·갈등 구도)는 유지하되 세부 묘사와 선택지 표현은 "
+    "매번 새롭게 쓴다. 직전 선택의 결과가 자연스럽게 이어져야 한다.\n"
+    "반드시 아래 형식의 JSON 하나만 출력한다. JSON 밖에 다른 텍스트를 쓰지 않는다:\n"
+    '{"narration": "한국어 3~5문장 내레이션", '
+    '"choice_a": "선택지 A 문구", "choice_b": "선택지 B 문구", '
+    '"reason_a": "A를 골랐다는 과거형 한 문장", "reason_b": "B를 골랐다는 과거형 한 문장"}\n'
+    "choice_a는 설계도가 지정한 A 성향이 고를 법한 행동, choice_b는 B 성향이 고를 법한 "
+    "행동이어야 한다. 성향·MBTI 용어는 본문에 절대 쓰지 않는다. reason은 결과지에 "
+    "인용되므로 '~에서 ~했다' 형태의 완결된 문장으로 쓴다."
 )
 
 QA_SYSTEM = (
@@ -52,6 +69,34 @@ def _call(system: str, user: str, stub: str) -> str:
     if GAME_LLM == "bedrock":
         return _bedrock(system, user)
     return stub  # stub: storyboard/KB 원문이 곧 플레이 가능한 텍스트
+
+
+def _parse_scene(text: str) -> dict:
+    """모델 출력에서 장면 JSON을 꺼내 필수 필드를 검증한다."""
+    m = re.search(r"\{.*\}", text, re.DOTALL)
+    if not m:
+        raise ValueError("JSON 없음")
+    d = json.loads(m.group(0))
+    for k in ("narration", "choice_a", "choice_b", "reason_a", "reason_b"):
+        if not isinstance(d.get(k), str) or not d[k].strip():
+            raise ValueError(f"필드 누락: {k}")
+    return d
+
+
+def generate_scene(design: str, material: str, history: list[str]) -> dict | None:
+    """동적 장면 생성 (bedrock 전용). 실패하면 None — 호출자가 고정 장면으로 폴백."""
+    if GAME_LLM != "bedrock":
+        return None
+    hist = "\n".join(f"- {h}" for h in history) or "- (첫 장면 — 아직 선택 없음)"
+    user = (
+        f"[장면 설계도]\n{design}\n\n[세계관 자료]\n{material}\n\n"
+        f"[지금까지의 선택]\n{hist}"
+    )
+    try:
+        return _parse_scene(_bedrock(SCENE_SYSTEM, user))
+    except Exception as e:  # 생성 실패가 게임을 죽이면 안 됨
+        print(f"[llm] 장면 생성 실패, 고정 장면으로 폴백: {e}")
+        return None
 
 
 def narrate(scene_text: str, prev_reason: str | None) -> str:

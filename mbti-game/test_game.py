@@ -41,6 +41,36 @@ def test_engine():
         pass
 
 
+def test_dynamic_scene():
+    """생성 장면: 문구만 바뀌고 점수 골격은 원본 유지, 파서는 불량 출력 거부."""
+    import llm
+
+    s = engine.create_session()
+    gen = {
+        "narration": "새로 쓴 내레이션",
+        "choice_a": "새 A 문구", "choice_b": "새 B 문구",
+        "reason_a": "광장에서 먼저 인사를 건넸다", "reason_b": "광장에서 조용히 지켜보았다",
+    }
+    engine.store_generated(s, 0, gen)
+    scene = engine.scene_for(s, 0)
+    assert scene["choices"][0]["label"] == "새 A 문구"
+    assert scene["choices"][0]["attr"] == "E" and scene["choices"][0]["score"] == 1  # 골격 유지
+    record = engine.apply_choice(s, "A")
+    assert record.reason == "광장에서 먼저 인사를 건넸다"  # 결과지 인용은 생성 문구
+    assert s.scores.E == 1
+    assert engine.scene_for(s, 1) == engine.get_scene(1)  # 생성 없으면 원본
+
+    d = llm._parse_scene('앞말\n{"narration":"n","choice_a":"a","choice_b":"b",'
+                         '"reason_a":"ra","reason_b":"rb"}\n뒷말')
+    assert d["choice_a"] == "a"
+    for bad in ("JSON 아님", '{"narration":"n"}', '{"narration":""}'):
+        try:
+            llm._parse_scene(bad)
+            raise AssertionError(f"불량 출력 통과: {bad}")
+        except (ValueError, KeyError):
+            pass
+
+
 def test_server_stub():
     from fastapi.testclient import TestClient
     import server
@@ -72,5 +102,6 @@ def test_server_stub():
 
 if __name__ == "__main__":
     test_engine()
+    test_dynamic_scene()
     test_server_stub()
-    print("OK: engine + server(stub) 전 구간 통과")
+    print("OK: engine + 동적 장면 + server(stub) 전 구간 통과")

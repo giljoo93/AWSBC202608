@@ -23,11 +23,13 @@ class ChoiceRecord(BaseModel):
 
 class Session(BaseModel):
     id: str
-    step: int = 0        # 완료한 분기 수 (0~4)
+    step: int = 0        # 완료한 분기 수 (0~8)
     scores: Scores = Field(default_factory=Scores)
     history: list[ChoiceRecord] = Field(default_factory=list)
     mbti: str | None = None
     report: str | None = None
+    # 동적 모드에서 LLM이 생성한 장면 (step → 장면 dict). attr/score는 항상 원본 값.
+    gen_scenes: dict[int, dict] = Field(default_factory=dict)
 
 
 # --- API 요청/응답 ---

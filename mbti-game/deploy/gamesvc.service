@@ -9,6 +9,11 @@ Environment=GAME_LLM=bedrock
 Environment=AWS_REGION=us-east-1
 # Bedrock 콘솔 '모델 액세스'에서 활성화한 모델 id로 교체
 Environment=GAME_BEDROCK_MODEL=CHANGE_ME
+# Knowledge Base id (콘솔에서 생성 후 10자리 id 입력). 비우면 로컬 JSON으로 동작.
+Environment=GAME_KB_STORY=
+Environment=GAME_KB_MBTI=
+# 동적 장면 생성을 끄고 고정 스토리만 쓰려면 주석 해제
+# Environment=GAME_SCENE_MODE=static
 ExecStart=/usr/bin/python3.11 -m uvicorn server:app --host 0.0.0.0 --port 8000
 Restart=always
 RestartSec=3
