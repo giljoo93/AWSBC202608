@@ -1,0 +1,649 @@
+<meta charset="utf-8">
+<title>차원문 너머 발표</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#100E17; --bg2:#171423; --surface:#1D1930; --surface2:#241F3A;
+    --line:#2E2843; --line2:#3A3355;
+    --ink:#EFEAE0; --muted:#A79FB8; --dim:#6E668A;
+    --gold:#E0B15E; --gold-deep:#B8863B; --gold-dim:rgba(224,177,94,.14);
+    --steel:#8FA8D8; --steel-dim:rgba(143,168,216,.13);
+    --serif:'Noto Serif KR',"Nanum Myeongjo",serif;
+    --sans:'IBM Plex Sans KR',"Malgun Gothic",sans-serif;
+    --mono:'IBM Plex Mono',Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{height:100%}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);overflow:hidden}
+
+  #stage{position:absolute;left:50%;top:50%;width:1280px;height:720px;
+    transform:translate(-50%,-50%);transform-origin:center;background:var(--bg)}
+
+  .slide{position:absolute;inset:0;padding:64px 84px 88px;opacity:0;visibility:hidden;
+    transform:translateY(14px);transition:opacity .45s ease,transform .45s ease,visibility 0s .45s;
+    display:flex;flex-direction:column}
+  .slide.current{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s ease}
+  @media (prefers-reduced-motion:reduce){
+    .slide{transition:opacity .01s;transform:none}
+  }
+
+  /* ---------- shared ---------- */
+  .eyebrow{font-size:14px;letter-spacing:.32em;color:var(--gold);font-weight:500;margin-bottom:14px}
+  .eyebrow .no{color:var(--dim);margin-right:10px;font-family:var(--mono);letter-spacing:.1em}
+  h2{font-family:var(--serif);font-weight:700;font-size:40px;line-height:1.25;text-wrap:balance;margin-bottom:10px}
+  .lede{font-size:19px;color:var(--muted);line-height:1.65;max-width:62ch}
+  .fill{flex:1;display:flex;flex-direction:column;justify-content:center}
+  .mono{font-family:var(--mono)}
+  .gold{color:var(--gold)}
+  .steel{color:var(--steel)}
+  .rule{height:1px;background:linear-gradient(90deg,var(--gold-deep),transparent 70%);margin:22px 0 0;border:0}
+
+  .cards{display:grid;gap:20px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 26px;
+    display:flex;flex-direction:column;gap:8px}
+  .card h3{font-size:20px;font-weight:700;line-height:1.35}
+  .card p{font-size:15.5px;color:var(--muted);line-height:1.62}
+  .card .tag{font-size:12.5px;letter-spacing:.22em;color:var(--gold);font-weight:500}
+  .card.steel .tag{color:var(--steel)}
+
+  .chip{display:inline-block;font-family:var(--mono);font-size:12.5px;color:var(--muted);
+    border:1px solid var(--line2);border-radius:3px;padding:3px 9px}
+
+  figure{margin:0}
+  figcaption{font-size:14px;color:var(--dim);margin-top:12px;text-align:center}
+  svg{display:block;max-width:100%;height:auto}
+  svg text{font-family:var(--sans)}
+  svg .t-mono{font-family:var(--mono)}
+
+  /* ---------- S1 title ---------- */
+  .s-title{align-items:center;justify-content:center;text-align:center;padding:64px}
+  .portal{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);opacity:.55;pointer-events:none}
+  .s-title .meta{font-size:14px;letter-spacing:.34em;color:var(--muted);margin-bottom:30px}
+  .s-title h1{font-family:var(--serif);font-weight:900;font-size:96px;line-height:1.12;letter-spacing:.02em;
+    color:var(--ink);text-shadow:0 0 60px rgba(224,177,94,.25);position:relative}
+  .s-title h1 em{font-style:normal;color:var(--gold)}
+  .s-title .sub{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--muted);
+    margin-top:26px;line-height:1.6;position:relative}
+  .s-title .team{margin-top:44px;display:flex;gap:14px;justify-content:center;align-items:center;position:relative}
+  .s-title .team .name{font-size:19px;font-weight:700;letter-spacing:.12em}
+  .s-title .team .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-deep)}
+  .s-title .hint{position:absolute;bottom:36px;left:0;right:0;font-size:13px;color:var(--dim);letter-spacing:.14em}
+
+  /* ---------- S2 idea ---------- */
+  .versus{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch;margin:22px 0 22px}
+  .versus .side{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 24px}
+  .tight .card{padding:18px 22px}
+  .tight .card p{font-size:14.5px}
+  .versus .side.q{border-left:3px solid var(--line2)}
+  .versus .side.a{border-left:3px solid var(--gold-deep)}
+  .versus .side .k{font-size:13px;letter-spacing:.26em;color:var(--dim);margin-bottom:10px}
+  .versus .side.a .k{color:var(--gold)}
+  .versus .side .v{font-family:var(--serif);font-size:21px;font-weight:700;line-height:1.45}
+  .versus .side p{font-size:14.5px;color:var(--muted);margin-top:9px;line-height:1.6}
+  .versus .arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:26px}
+
+  /* ---------- S3 game flow ---------- */
+  .flowline{display:flex;align-items:center;gap:12px;margin:34px 0 30px}
+  .fstep{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;text-align:center;flex:1}
+  .fstep .fk{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em}
+  .fstep .fv{font-size:17.5px;font-weight:700;margin-top:6px}
+  .fstep .fs{font-size:13px;color:var(--muted);margin-top:5px}
+  .fstep.hot{border-color:var(--gold-deep);background:linear-gradient(180deg,var(--gold-dim),var(--surface))}
+  .farrow{color:var(--gold-deep);font-size:20px;flex:0 0 auto}
+  .branchdots{display:flex;gap:9px;justify-content:center;margin-top:9px}
+  .bd{width:11px;height:11px;background:var(--dim);border-radius:50%}
+  .bd.combat{background:var(--gold);border-radius:0;transform:rotate(45deg) scale(.92)}
+  .scorerow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+  /* ---------- diagrams ---------- */
+  .diag-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
+
+  /* ---------- S5 services ---------- */
+  .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
+  .svc .card{padding:20px 20px 18px;gap:6px}
+  .svc .card h3{font-size:17.5px}
+  .svc .card .role{font-size:13.5px;color:var(--muted);line-height:1.55}
+  .svc .card .spec{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:auto;padding-top:10px}
+  .svc .aws{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:500}
+
+  /* ---------- S7 principles ---------- */
+  .grid2x3{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:18px;margin-top:30px}
+
+  /* ---------- S9 demo ---------- */
+  .demo-url{display:inline-flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--gold-deep);
+    border-radius:6px;padding:16px 26px;margin:26px 0 8px}
+  .demo-url .u{font-family:var(--mono);font-size:24px;color:var(--gold)}
+  .watch{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+
+  /* ---------- S10 close ---------- */
+  .s-close{align-items:center;justify-content:center;text-align:center}
+  .s-close .thanks{font-family:var(--serif);font-weight:900;font-size:66px;margin:34px 0 12px;position:relative}
+  .learn{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;margin:8px auto 0;text-align:left}
+
+  /* ---------- HUD ---------- */
+  #hud{position:absolute;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;
+    justify-content:space-between;padding:0 84px;font-size:13px;color:var(--dim)}
+  #hud .dots{display:flex;gap:9px}
+  #hud .dots button{width:9px;height:9px;border-radius:50%;border:0;background:var(--line2);cursor:pointer;padding:0}
+  #hud .dots button.on{background:var(--gold)}
+  #hud .ctr{font-family:var(--mono);letter-spacing:.1em}
+  #hud .keys button{background:none;border:1px solid var(--line2);color:var(--muted);border-radius:4px;
+    padding:4px 12px;cursor:pointer;font-family:var(--sans);font-size:12.5px;margin-left:8px}
+  #hud .keys button:hover,#hud .dots button:focus-visible,#hud .keys button:focus-visible{border-color:var(--gold);color:var(--gold);outline:none}
+</style>
+
+<div id="stage">
+
+  <!-- 1 · 타이틀 -->
+  <section class="slide s-title current">
+    <svg class="portal" width="620" height="620" viewBox="0 0 620 620" aria-hidden="true">
+      <circle cx="310" cy="310" r="285" fill="none" stroke="#2E2843" stroke-width="1"/>
+      <circle cx="310" cy="310" r="252" fill="none" stroke="#B8863B" stroke-width="1" stroke-dasharray="3 9" opacity=".8"/>
+      <circle cx="310" cy="310" r="216" fill="none" stroke="#3A3355" stroke-width="1"/>
+      <circle cx="310" cy="310" r="180" fill="none" stroke="#E0B15E" stroke-width="1.4" stroke-dasharray="60 14 6 14" opacity=".6"/>
+      <circle cx="310" cy="310" r="180" fill="rgba(224,177,94,.045)"/>
+    </svg>
+    <div class="meta">2026 클라우드컴퓨팅 부트캠프 · 팀 프로젝트</div>
+    <h1>차원문 <em>너머</em></h1>
+    <p class="sub">이세계 판타지의 8가지 선택으로 판정하는 나의 MBTI<br>
+      Amazon Bedrock RAG 게임 서비스</p>
+    <div class="team">
+      <span class="name">김도윤</span><span class="dot"></span>
+      <span class="name">김민석</span><span class="dot"></span>
+      <span class="name">이길주</span>
+    </div>
+    <div class="hint">← → 방향키 또는 클릭으로 진행 · F 전체화면</div>
+  </section>
+
+  <!-- 2 · 아이디어 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">01</span>아이디어</div>
+    <h2>검사지를 덮고, 이야기 속으로</h2>
+    <p class="lede">설문형 MBTI 검사는 "나는 이런 사람"이라는 자기보고에 의존합니다.
+      우리는 질문 대신 <b style="color:var(--ink)">상황</b>을 주고, 이야기 속 실제 선택으로 성향을 읽습니다.</p>
+    <div class="fill">
+      <div class="versus">
+        <div class="side q">
+          <div class="k">기존 방식</div>
+          <div class="v">"당신은 모임에서 먼저 말을 거는 편입니까?"</div>
+          <p>수십 개 문항 · 지루함 · 바람직해 보이는 답을 고르게 되는 왜곡</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side a">
+          <div class="k">차원문 너머</div>
+          <div class="v">낯선 이세계 마을 — 주민에게 먼저 다가간다 / 물러나 관찰한다</div>
+          <p>용사 소환 서사 8개 분기 · 몰입한 순간의 선택이 곧 데이터</p>
+        </div>
+      </div>
+      <div class="cards tight" style="grid-template-columns:repeat(3,1fr)">
+        <div class="card">
+          <div class="tag">서사</div>
+          <h3>설문 대신 스토리</h3>
+          <p>프롤로그부터 엔딩까지 하나의 판타지 서사. 선택 8번이면 검사가 끝납니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">정확도</div>
+          <h3>위기가 본성을 드러낸다</h3>
+          <p>일상 분기보다 전투 분기 선택에 2배 가중치 — 고압 상황의 선택이 성향을 더 강하게 반영합니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">AI 게임 마스터</div>
+          <h3>연출·결과지·상담까지</h3>
+          <p>Bedrock의 Claude가 장면 내레이션, 근거 인용 결과지, 판정 후 자유 Q&amp;A를 담당합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · 게임 구조 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">02</span>게임 구조</div>
+    <h2>선택 8번, 동점 없는 판정</h2>
+    <div class="fill">
+      <div class="flowline">
+        <div class="fstep"><div class="fk">start</div><div class="fv">소환</div><div class="fs">프롤로그 + 첫 분기</div></div>
+        <div class="farrow">→</div>
+        <div class="fstep hot" style="flex:1.7">
+          <div class="fk">choice ×8</div><div class="fv">분기 선택</div>
+          <div class="branchdots">
+            <span class="bd"></span><span class="bd"></span><span class="bd"></span><span class="bd"></span>
+            <span class="bd combat"></span><span class="bd combat"></span><span class="bd combat"></span><span class="bd combat"></span>
+          </div>
+          <div class="fs">일상 4 (●) · 전투 4 (◆)</div>
+        </div>
+        <div class="farrow">→</div>
+        <div class="fstep"><div class="fk">judge</div><div class="fv">MBTI 판정</div><div class="fs">코드가 점수 합산</div></div>
+        <div class="farrow">→</div>
+        <div class="fstep"><div class="fk">report</div><div class="fv">결과지</div><div class="fs">선택 문장 인용</div></div>
+        <div class="farrow">→</div>
+        <div class="fstep"><div class="fk">chat</div><div class="fv">Q&amp;A</div><div class="fs">내 타입 자유 질문</div></div>
+      </div>
+      <div class="scorerow">
+        <div class="card steel">
+          <div class="tag">점수 규칙</div>
+          <h3>일상 +1 · 전투 +2</h3>
+          <p>선택마다 해당 속성(E/I·S/N·T/F·J/P)에 가점. 근거 문장이 함께 기록되어 결과지의 인용 재료가 됩니다.</p>
+        </div>
+        <div class="card steel">
+          <div class="tag">축 설계</div>
+          <h3>축당 2회 = 합계 3점</h3>
+          <p>4개 축 × (일상 1점 + 전투 2점). 축 합계가 홀수라 <b style="color:var(--ink)">동점이 구조적으로 불가능</b> — 판정이 항상 확정됩니다.</p>
+        </div>
+        <div class="card steel">
+          <div class="tag">판정</div>
+          <h3>E&gt;I → E, 4글자 조합</h3>
+          <p>축별 우세 속성을 이어 붙여 16타입 확정. 이 계산에 LLM은 관여하지 않습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · 아키텍처 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">03</span>시스템 아키텍처</div>
+    <h2>서울의 게임 서버, 버지니아의 지능</h2>
+    <div class="diag-wrap">
+      <figure>
+        <svg viewBox="0 0 1120 452" role="img" aria-label="플레이어 브라우저가 서울 리전 EC2의 FastAPI 서버와 JSON으로 통신하고, EC2는 버지니아 리전 Bedrock의 Claude에 Converse 호출, Knowledge Base에 Retrieve 호출을 한다. S3 문서 버킷은 Titan 임베딩을 거쳐 S3 Vectors 인덱스로 수집된다.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
+            </marker>
+            <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
+            </marker>
+          </defs>
+
+          <!-- player -->
+          <rect x="12" y="170" width="158" height="112" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="91" y="216" text-anchor="middle" fill="#EFEAE0" font-size="17" font-weight="700">플레이어</text>
+          <text x="91" y="240" text-anchor="middle" fill="#A79FB8" font-size="13">브라우저 · 챗 UI</text>
+          <text x="91" y="260" text-anchor="middle" fill="#6E668A" font-size="12">비주얼 노벨 프론트</text>
+
+          <!-- Seoul region -->
+          <rect x="234" y="52" width="344" height="368" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="252" y="80" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 서울</text>
+          <text x="252" y="98" fill="#6E668A" font-size="11.5" class="t-mono">ap-northeast-2</text>
+
+          <rect x="256" y="116" width="300" height="282" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="276" y="146" fill="#EFEAE0" font-size="16.5" font-weight="700">Amazon EC2 · FastAPI</text>
+          <text x="276" y="166" fill="#6E668A" font-size="12" class="t-mono">t3.micro · systemd 상시 기동</text>
+
+          <rect x="276" y="182" width="260" height="56" rx="4" fill="rgba(143,168,216,.13)" stroke="#8FA8D8" stroke-opacity=".5"/>
+          <text x="292" y="205" fill="#8FA8D8" font-size="13.5" font-weight="700">engine — 점수 · MBTI 판정</text>
+          <text x="292" y="224" fill="#A79FB8" font-size="12">순수 코드 · 세션 인메모리</text>
+
+          <rect x="276" y="248" width="260" height="56" rx="4" fill="rgba(224,177,94,.12)" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="292" y="271" fill="#E0B15E" font-size="13.5" font-weight="700">llm + rag — 연출 · 지식</text>
+          <text x="292" y="290" fill="#A79FB8" font-size="12">Bedrock 호출 클라이언트</text>
+
+          <rect x="276" y="322" width="124" height="30" rx="3" fill="none" stroke="#3A3355"/>
+          <text x="338" y="342" text-anchor="middle" fill="#A79FB8" font-size="12">IAM Role (키 없음)</text>
+          <rect x="412" y="322" width="124" height="30" rx="3" fill="none" stroke="#3A3355"/>
+          <text x="474" y="342" text-anchor="middle" fill="#A79FB8" font-size="12">SSM 접속·배포</text>
+
+          <!-- Virginia region -->
+          <rect x="648" y="24" width="460" height="420" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="666" y="52" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 버지니아 · Amazon Bedrock</text>
+          <text x="666" y="70" fill="#6E668A" font-size="11.5" class="t-mono">us-east-1</text>
+
+          <rect x="668" y="88" width="420" height="72" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
+          <text x="688" y="117" fill="#E0B15E" font-size="16" font-weight="700">Claude Haiku 4.5</text>
+          <text x="688" y="140" fill="#A79FB8" font-size="12.5">Converse API — 내레이션 · 결과지 · Q&amp;A 생성</text>
+
+          <rect x="668" y="182" width="420" height="86" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="688" y="211" fill="#EFEAE0" font-size="16" font-weight="700">Knowledge Bases ×2</text>
+          <text x="688" y="233" fill="#A79FB8" font-size="12.5">story(장면 자료) · mbti(16타입 지식) — 완전관리형 RAG</text>
+          <text x="688" y="253" fill="#6E668A" font-size="11.5" class="t-mono">Retrieve API</text>
+
+          <rect x="668" y="308" width="196" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="688" y="336" fill="#EFEAE0" font-size="15" font-weight="700">S3 Vectors</text>
+          <text x="688" y="357" fill="#A79FB8" font-size="12">인덱스 ×2 · 1024차원</text>
+          <text x="688" y="374" fill="#6E668A" font-size="11.5" class="t-mono">cosine</text>
+
+          <rect x="892" y="308" width="196" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="912" y="336" fill="#EFEAE0" font-size="15" font-weight="700">S3 문서 버킷</text>
+          <text x="912" y="357" fill="#A79FB8" font-size="12">스토리 · MBTI 원문</text>
+          <text x="912" y="374" fill="#6E668A" font-size="11.5" class="t-mono">story/ · mbti/</text>
+
+          <!-- arrows -->
+          <line x1="170" y1="226" x2="250" y2="226" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <text x="210" y="212" text-anchor="middle" fill="#A79FB8" font-size="12">HTTPS · JSON</text>
+
+          <line x1="556" y1="212" x2="662" y2="130" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="608" y="150" text-anchor="middle" fill="#E0B15E" font-size="12.5">Converse</text>
+
+          <line x1="556" y1="276" x2="662" y2="228" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="606" y="270" text-anchor="middle" fill="#E0B15E" font-size="12.5">Retrieve</text>
+
+          <line x1="886" y1="346" x2="870" y2="346" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
+          <text x="878" y="332" text-anchor="middle" fill="#A79FB8" font-size="11.5">수집</text>
+          <line x1="766" y1="302" x2="766" y2="274" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
+          <text x="782" y="292" fill="#A79FB8" font-size="11.5">인덱스</text>
+          <text x="978" y="416" text-anchor="middle" fill="#6E668A" font-size="11.5">Titan Embeddings V2로 청크 임베딩</text>
+
+          <!-- cross region note -->
+          <text x="612" y="430" text-anchor="middle" fill="#6E668A" font-size="12">크로스 리전 — env AWS_REGION=us-east-1 한 줄로 연결</text>
+        </svg>
+        <figcaption>점수·판정은 EC2의 코드가(<span class="steel">스틸</span>), 서사·지식은 Bedrock이(<span class="gold">골드</span>) — 역할이 물리적으로 분리된 구조</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5 · AWS 서비스 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">04</span>사용한 AWS 서비스</div>
+    <h2>7개 서비스, 각자 한 가지 일</h2>
+    <div class="fill">
+      <div class="svc">
+        <div class="card">
+          <div class="aws">COMPUTE</div><h3>Amazon EC2</h3>
+          <p class="role">FastAPI 게임 서버. 점수 엔진·세션·API 전부 이 위에서 동작</p>
+          <div class="spec">t3.micro · 서울 · systemd</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI</div><h3>Amazon Bedrock</h3>
+          <p class="role">Claude Haiku 4.5 — 내레이션·결과지·Q&amp;A 생성 (Converse API)</p>
+          <div class="spec">claude-haiku-4-5</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI · RAG</div><h3>Knowledge Bases</h3>
+          <p class="role">스토리·MBTI 문서 검색을 완전관리형으로 — 청크·임베딩·검색 자동화</p>
+          <div class="spec">story KB · mbti KB</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI</div><h3>Titan Embeddings V2</h3>
+          <p class="role">KB 수집 시 문서 청크를 1024차원 벡터로 변환</p>
+          <div class="spec">1024-dim · cosine</div>
+        </div>
+        <div class="card">
+          <div class="aws">STORAGE</div><h3>Amazon S3</h3>
+          <p class="role">지식베이스 원문 문서 저장소. s3 sync 한 번으로 자료 갱신</p>
+          <div class="spec">story/ · mbti/ 접두사</div>
+        </div>
+        <div class="card">
+          <div class="aws">STORAGE</div><h3>Amazon S3 Vectors</h3>
+          <p class="role">임베딩 벡터 전용 스토리지 — 별도 벡터 DB 서버 없이 인덱스 운영</p>
+          <div class="spec">인덱스 ×2</div>
+        </div>
+        <div class="card">
+          <div class="aws">SECURITY</div><h3>AWS IAM</h3>
+          <p class="role">EC2 인스턴스 role로 권한 공급. 코드·서버에 액세스 키 0개</p>
+          <div class="spec">InvokeModel · Retrieve</div>
+        </div>
+        <div class="card">
+          <div class="aws">OPS</div><h3>Systems Manager</h3>
+          <p class="role">SSH 키 없이 접속·배포 — Session Manager와 send-command</p>
+          <div class="spec">SSM Agent</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · RAG 파이프라인 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">05</span>RAG 파이프라인</div>
+    <h2>지식은 문서로 넣고, 프롬프트로 꺼낸다</h2>
+    <div class="diag-wrap">
+      <figure>
+        <svg viewBox="0 0 1120 400" role="img" aria-label="적재 단계: 문서를 S3에 올리면 수집 작업이 청크 분할과 Titan V2 임베딩을 거쳐 S3 Vectors 인덱스를 만든다. 조회 단계: 게임 장면이나 질문이 들어오면 Knowledge Base Retrieve로 관련 청크를 찾아 프롬프트에 주입하고 Claude가 연출한다.">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
+            </marker>
+            <marker id="arg2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
+            </marker>
+          </defs>
+
+          <!-- lane labels -->
+          <text x="12" y="52" fill="#A79FB8" font-size="13" letter-spacing="3">적재 — 자료를 넣을 때</text>
+          <line x1="12" y1="64" x2="1108" y2="64" stroke="#2E2843"/>
+
+          <rect x="12" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="110" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">문서 작성</text>
+          <text x="110" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">스토리 · MBTI 지식 (.md)</text>
+
+          <rect x="312" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="410" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 업로드</text>
+          <text x="410" y="150" text-anchor="middle" fill="#6E668A" font-size="12" class="t-mono">aws s3 sync</text>
+
+          <rect x="612" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="710" y="120" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">수집 작업</text>
+          <text x="710" y="141" text-anchor="middle" fill="#A79FB8" font-size="12">청크 분할 + Titan V2 임베딩</text>
+          <text x="710" y="160" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">start-ingestion-job</text>
+
+          <rect x="912" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="1010" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 Vectors 인덱스</text>
+          <text x="1010" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">1024차원 · cosine ×2</text>
+
+          <line x1="208" y1="134" x2="306" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+          <line x1="508" y1="134" x2="606" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+          <line x1="808" y1="134" x2="906" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+
+          <!-- retrieve lane -->
+          <text x="12" y="238" fill="#E0B15E" font-size="13" letter-spacing="3">조회 — 게임이 돌 때</text>
+          <line x1="12" y1="250" x2="1108" y2="250" stroke="#2E2843"/>
+
+          <rect x="12" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="110" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">게임 이벤트</text>
+          <text x="110" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">장면 진입 · 결과지 · 질문</text>
+
+          <rect x="312" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="410" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">KB Retrieve</text>
+          <text x="410" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">유사도 상위 청크 검색</text>
+
+          <rect x="612" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="710" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">프롬프트 주입</text>
+          <text x="710" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">system + 검색 자료 + 요청</text>
+
+          <rect x="912" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="1010" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">Claude 생성</text>
+          <text x="1010" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">내레이션 · 결과지 · 답변</text>
+
+          <line x1="208" y1="320" x2="306" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+          <line x1="508" y1="320" x2="606" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+          <line x1="808" y1="320" x2="906" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+
+          <!-- vertical link -->
+          <line x1="410" y1="272" x2="1006" y2="182" stroke="#6E668A" stroke-width="1.3" stroke-dasharray="5 5" marker-end="url(#ar2)"/>
+        </svg>
+        <figcaption>MBTI 자료 추가 = <span class="mono">s3 sync</span> + 수집 작업 1회 — 서버 재시작도, 코드 수정도 없다</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7 · 설계 원칙 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">06</span>설계 원칙</div>
+    <h2>점수는 코드가, 서사는 모델이</h2>
+    <div class="fill">
+      <div class="grid2x3 cards">
+        <div class="card steel">
+          <div class="tag">신뢰성</div>
+          <h3>LLM은 판정에 손대지 못한다</h3>
+          <p>점수 규칙은 storyboard 데이터에 정적 정의, 합산·판정은 엔진 코드. 모델 출력이 점수에 닿는 경로 자체가 없습니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">보안</div>
+          <h3>액세스 키 0개</h3>
+          <p>EC2 IAM role이 자격증명을 공급하고 권한은 InvokeModel·Retrieve로 최소화. 서버 어디에도 키 파일이 없습니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">개발 경험</div>
+          <h3>stub 모드</h3>
+          <p><span class="mono">GAME_LLM=stub</span> 하나로 AWS 없이 완주 테스트 — 비용 0원으로 로컬 개발, 배포 시 <span class="mono">bedrock</span>으로 전환.</p>
+        </div>
+        <div class="card">
+          <div class="tag">아키텍처</div>
+          <h3>크로스 리전</h3>
+          <p>사용자와 가까운 서울에 서버를, 모델이 있는 버지니아에 Bedrock을 — 환경 변수 한 줄로 두 리전을 잇습니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">협업</div>
+          <h3>JSON 계약서 하나로 분업</h3>
+          <p>API.md에 요청·응답 폼을 전부 명세. 프론트는 목 데이터로, 백엔드는 stub으로 — 서로를 기다리지 않고 개발했습니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">범위 관리</div>
+          <h3>의도된 단순함</h3>
+          <p>세션은 서버 인메모리, DB 없음. 부트캠프 범위에 맞춘 선택이고, 필요해지는 시점과 확장 경로(S3 덤프)를 문서에 남겼습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · 프론트엔드 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">07</span>프론트엔드</div>
+    <h2>비주얼 노벨의 문법으로</h2>
+    <p class="lede">챗 UI가 아니라 게임 화면처럼 — 텍스트 게임 레퍼런스를 조사해 서술과 대사를 나누는 비주얼 노벨 관례를 따랐습니다.</p>
+    <div class="fill">
+      <div class="cards" style="grid-template-columns:repeat(2,1fr);gap:18px">
+        <div class="card">
+          <div class="tag">연출</div>
+          <h3>장면이 살아 있다</h3>
+          <p>서술(어두운 패널)과 대사(금빛 패널, 화자 명찰) 분리 · 배경 크로스페이드 · 등장인물 입상 · 장 전환 타이틀 카드 · 판정 연출 "차원문이 당신을 읽고 있습니다"</p>
+        </div>
+        <div class="card">
+          <div class="tag">아트</div>
+          <h3>이미지 16장, 전부 생성형</h3>
+          <p>배경 10장 + 인물 6명 — Bedrock 이미지 모델에 구도 스케치를 넣어 제작. 파일이 없으면 그라디언트·실루엣으로 자동 폴백해 깨지지 않습니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">구조</div>
+          <h3>플래그 하나로 목 ↔ 실서버</h3>
+          <p><span class="mono">USE_MOCK</span> 한 줄만 바꾸면 백엔드 연결. 목과 실서버가 같은 JSON 계약을 지키므로 렌더링 코드는 그대로입니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">품질</div>
+          <h3>브라우저 없이 완주 테스트</h3>
+          <p>jsdom 헤드리스 테스트가 8분기를 실제로 클릭해 판정·백로그까지 검증. 접근성으로 키보드 선택과 모션 감소 설정도 지원합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9 · 데모 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">08</span>라이브 데모</div>
+    <h2>직접 차원문을 건너보겠습니다</h2>
+    <div class="fill">
+      <div>
+        <div class="demo-url"><span style="font-size:13px;letter-spacing:.24em;color:var(--muted)">DEMO</span>
+          <span class="u">http://13.125.228.183:8000</span></div>
+        <div style="font-size:13px;color:var(--dim)">EC2 퍼블릭 IP — 인스턴스 재시작 시 변경될 수 있습니다</div>
+      </div>
+      <div class="watch">
+        <div class="card">
+          <div class="tag">시나리오</div>
+          <h3>소환 → 선택 8번 → 판정 → Q&amp;A</h3>
+          <p>프롤로그에서 시작해 일상·전투 분기를 지나면 판정 연출과 함께 MBTI 카드가 나타나고, 이후 "INTJ랑 잘 맞아?" 같은 자유 질문에 챗봇이 답합니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">주목할 점</div>
+          <h3>결과지가 내 선택을 인용한다</h3>
+          <p>"당신은 다리 위 트롤 앞에서 ~했습니다"처럼 실제 선택 문장이 근거로 등장하고, 일상과 전투에서 선택이 갈린 축은 "평소에는 ~지만 위기에는 ~"으로 짚어줍니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 · 마무리 -->
+  <section class="slide s-close">
+    <svg class="portal" width="520" height="520" viewBox="0 0 620 620" aria-hidden="true" style="opacity:.35">
+      <circle cx="310" cy="310" r="285" fill="none" stroke="#2E2843" stroke-width="1"/>
+      <circle cx="310" cy="310" r="252" fill="none" stroke="#B8863B" stroke-width="1" stroke-dasharray="3 9"/>
+      <circle cx="310" cy="310" r="180" fill="none" stroke="#E0B15E" stroke-width="1.2" stroke-dasharray="60 14 6 14" opacity=".6"/>
+    </svg>
+    <div class="eyebrow" style="position:relative"><span class="no">09</span>배운 것들</div>
+    <div class="learn cards" style="position:relative">
+      <div class="card">
+        <div class="tag">RAG</div>
+        <h3>검색을 서비스에 맡기다</h3>
+        <p>로컬 키워드 검색으로 시작해 Knowledge Bases + S3 Vectors로 이관 — 관리형 RAG의 운영 단순함을 체감했습니다.</p>
+      </div>
+      <div class="card">
+        <div class="tag">보안</div>
+        <h3>키 없는 클라우드</h3>
+        <p>IAM role · SSM만으로 인증과 접속을 해결 — 자격증명 파일 없는 배포가 기본값이 될 수 있음을 배웠습니다.</p>
+      </div>
+      <div class="card">
+        <div class="tag">AI 설계</div>
+        <h3>모델에게 줄 일과 안 줄 일</h3>
+        <p>판정은 코드에, 연출은 프롬프트에 — 역할을 가르는 경계선이 AI 서비스 신뢰성의 시작임을 확인했습니다.</p>
+      </div>
+    </div>
+    <div class="thanks">감사합니다</div>
+    <div class="team" style="display:flex;gap:14px;justify-content:center;align-items:center;position:relative">
+      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">김도윤</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--gold-deep)"></span>
+      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">김민석</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--gold-deep)"></span>
+      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">이길주</span>
+    </div>
+  </section>
+
+  <div id="hud">
+    <div class="dots" id="dots"></div>
+    <div class="ctr" id="ctr">1 / 10</div>
+    <div class="keys">
+      <button id="prev" aria-label="이전 슬라이드">←</button>
+      <button id="next" aria-label="다음 슬라이드">→</button>
+      <button id="fs">전체화면</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const stage = document.getElementById('stage');
+  const slides = [...document.querySelectorAll('.slide')];
+  const dots = document.getElementById('dots');
+  const ctr = document.getElementById('ctr');
+  let cur = 0;
+
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.setAttribute('aria-label', `슬라이드 ${i + 1}`);
+    b.addEventListener('click', e => { e.stopPropagation(); go(i); });
+    dots.appendChild(b);
+  });
+
+  function go(n) {
+    cur = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, i) => s.classList.toggle('current', i === cur));
+    [...dots.children].forEach((d, i) => d.classList.toggle('on', i === cur));
+    ctr.textContent = `${cur + 1} / ${slides.length}`;
+  }
+
+  function fit() {
+    const s = Math.min(innerWidth / 1280, innerHeight / 720);
+    stage.style.transform = `translate(-50%,-50%) scale(${s})`;
+  }
+  addEventListener('resize', fit); fit();
+
+  addEventListener('keydown', e => {
+    if (['ArrowRight', 'ArrowDown', ' ', 'PageDown'].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+    else if (e.key === 'Home') go(0);
+    else if (e.key === 'End') go(slides.length - 1);
+    else if (e.key.toLowerCase() === 'f') toggleFs();
+  });
+
+  stage.addEventListener('click', e => {
+    if (e.target.closest('button,a')) return;
+    go(cur + 1);
+  });
+  document.getElementById('prev').addEventListener('click', e => { e.stopPropagation(); go(cur - 1); });
+  document.getElementById('next').addEventListener('click', e => { e.stopPropagation(); go(cur + 1); });
+
+  function toggleFs() {
+    try {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else document.documentElement.requestFullscreen();
+    } catch (_) {}
+  }
+  document.getElementById('fs').addEventListener('click', e => { e.stopPropagation(); toggleFs(); });
+
+  go(0);
+</script>

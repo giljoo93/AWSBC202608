@@ -7,6 +7,7 @@ S3+CloudFront(프론트) / EC2 FastAPI(백엔드) / Bedrock(LLM) 구성.
 
 | 경로 | 내용 |
 |---|---|
+| [`presentation/deck.html`](presentation/deck.html) | **최종 발표 슬라이드** (브라우저로 열기 — ←/→ 진행, F 전체화면) |
 | [`finalplan/`](finalplan/ROADMAP.md) | 설계 문서 — 로드맵 + 태스크(T01~T08) |
 | [`finalplan/T06-ui-draft.md`](finalplan/T06-ui-draft.md) | **UI 설계** — 화면 상태·레이아웃·컴포넌트 |
 | [`mbti-game/frontend/`](mbti-game/frontend/README.md) | **웹 게임 프론트엔드** — 백엔드 없이 바로 플레이 가능 |
