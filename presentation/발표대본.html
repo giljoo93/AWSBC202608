@@ -1,0 +1,180 @@
+<meta charset="utf-8">
+<title>차원문 너머 대본</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=IBM+Plex+Sans+KR:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --bg:#100E17; --surface:#1D1930; --line:#2E2843;
+    --ink:#EFEAE0; --muted:#A79FB8; --dim:#6E668A;
+    --gold:#E0B15E; --gold-deep:#B8863B;
+    --serif:'Noto Serif KR',"Nanum Myeongjo",serif;
+    --sans:'IBM Plex Sans KR',"Malgun Gothic",sans-serif;
+    --mono:'IBM Plex Mono',Consolas,monospace;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.8;
+    padding:64px 24px 96px}
+  .wrap{max-width:720px;margin:0 auto}
+
+  header{margin-bottom:56px}
+  .eyebrow{font-size:13px;letter-spacing:.3em;color:var(--gold);font-weight:500;margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:900;font-size:44px;line-height:1.25;text-wrap:balance}
+  .meta{margin-top:16px;font-size:14.5px;color:var(--muted)}
+  .meta .mono{font-family:var(--mono);font-size:13px;color:var(--dim)}
+
+  section{border-top:1px solid var(--line);padding:34px 0 30px;break-inside:avoid}
+  .head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+  .pno{font-family:var(--mono);font-size:13px;color:var(--dim);letter-spacing:.08em;
+    border:1px solid var(--line);border-radius:3px;padding:2px 9px;white-space:nowrap}
+  .sname{font-size:15px;font-weight:700;color:var(--muted);letter-spacing:.04em}
+  .key{font-family:var(--serif);font-weight:700;font-size:24px;color:var(--gold);
+    line-height:1.45;text-wrap:balance;margin:10px 0 18px}
+  .say{font-size:18.5px;line-height:1.95;max-width:62ch}
+  .say p + p{margin-top:14px}
+  .say em{font-style:normal;color:var(--gold)}
+  .cue{margin-top:18px;font-family:var(--mono);font-size:12.5px;color:var(--dim);
+    letter-spacing:.14em;text-align:right}
+  .stage{color:var(--dim);font-size:16px}
+
+  .backup{margin-top:56px;background:var(--surface);border:1px solid var(--gold-deep);
+    border-radius:6px;padding:26px 30px}
+  .backup h2{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--gold);margin-bottom:12px}
+  .backup li{margin-left:20px;font-size:15.5px;color:var(--muted);line-height:1.8}
+  .backup .mono{font-family:var(--mono);font-size:13.5px;color:var(--ink);word-break:break-all}
+
+  @media print{
+    body{background:#fff;color:#1A1626;padding:0}
+    :root{--bg:#fff;--surface:#F5F2EA;--line:#D8D2C4;--ink:#1A1626;--muted:#5A5470;
+      --dim:#8A8498;--gold:#8A6420;--gold-deep:#8A6420}
+    section{page-break-inside:avoid}
+    header{margin-bottom:32px}
+  }
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">2026 클라우드컴퓨팅 부트캠프 · 발표 대본</div>
+    <h1>차원문 너머</h1>
+    <p class="meta">발표자 김도윤 · 팀 김도윤 · 김민석 · 이길주 — 페이지당 핵심 메시지 하나, 살은 현장에서.<br>
+      <span class="mono">슬라이드 11장 · 시연 제외 약 3분</span></p>
+  </header>
+
+  <section>
+    <div class="head"><span class="pno">P1</span><span class="sname">타이틀</span></div>
+    <div class="say">
+      <p>반갑습니다. 1팀 차원문 너머의 발표자 김도윤입니다.</p>
+      <p>저희 팀은 MBTI를 테마로 삼아서 텍스트 기반의 게임을 만들었습니다. 저희가 만든 작품을 간략히 발표토록 하겠습니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P2</span><span class="sname">아이디어</span></div>
+    <div class="key">지루한 검사를, 게임으로</div>
+    <div class="say">
+      <p>여러분은 MBTI 검사를 해보셨나요?</p>
+      <p>딱딱한 질문지에 반복되는 지루한 설문 내용들 — 따분하고 집중력도 떨어지고, 결과적으로 재미가 없고 힘든 기억으로 저는 남아 있습니다.</p>
+      <p>그래서 저희는 RPG 게임으로 MBTI를 검사할 수 있는 쉬운 기회를 자연스럽게 녹여내어 보았습니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P3</span><span class="sname">AWS 기술 스택</span></div>
+    <div class="key">EC2 · Bedrock · S3</div>
+    <div class="say">
+      <p>부트캠프에서 배운 다양한 기술 스택 중, 저희는 대표적으로 EC2와 Bedrock, S3 등을 활용하였습니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P4</span><span class="sname">아키텍처</span></div>
+    <div class="key">"문은 하나만 열어놨다"</div>
+    <div class="say">
+      <p>그림이 복잡해 보이는데, 핵심은 딱 하나입니다. <em>문을 하나만 열어놨다</em>는 거예요.</p>
+      <p>손님은 정문으로만 들어오고, 게임 서버는 안쪽 방에 숨겨놨습니다. 그래서 밖에서는 서버도, 데이터도 직접 못 건드립니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P5</span><span class="sname">RAG</span></div>
+    <div class="key">"AI에게 교과서를 쥐여줬다"</div>
+    <div class="say">
+      <p>저희는 AI한테 그냥 물어보지 않았습니다. 먼저 <em>교과서를 만들어줬어요.</em></p>
+      <p>스토리 설정집이랑 MBTI 조사 자료를 올려두면, AI가 필요할 때마다 찾아 읽고 이야기를 만듭니다. 자료만 갈아끼우면 게임 내용도 바뀝니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P6</span><span class="sname">근거 기반 답변</span></div>
+    <div class="key">"아무 말이나 안 하고, 근거를 대고 말한다"</div>
+    <div class="say">
+      <p>그래서 답이 다릅니다.</p>
+      <p>보통 AI는 "이 유형은 원래 이렇대요" 하고 일반론을 말하는데, 저희 게임은 <em>"당신, 아까 이렇게 선택하셨잖아요"</em>라고 내 행동을 근거로 말해줍니다.</p>
+      <p>스토리도 매번 새로 만들어져서, 새로고침만 해도 다른 이야기가 나옵니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P7</span><span class="sname">게임 플로우</span></div>
+    <div class="key">"여덟 번 고르면 끝, 무승부 없음"</div>
+    <div class="say">
+      <p>게임 방법은 간단합니다. <em>여덟 번만 고르면 돼요.</em></p>
+      <p>평소 상황 네 번, 위기 상황 네 번인데 — 위기 때 선택에 점수를 두 배 줬습니다. 급할 때 진짜 성격이 나오니까요.</p>
+      <p>이 설계 덕분에 비기는 경우가 아예 없습니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P8</span><span class="sname">AI 역할 분담</span></div>
+    <div class="key">"점수는 계산기가, 이야기는 작가가"</div>
+    <div class="say">
+      <p>역할을 딱 나눴습니다.</p>
+      <p>점수와 판정은 계산기처럼 정확한 <em>코드</em>가 하고, 이야기와 해설은 <em>AI 작가</em>가 씁니다.</p>
+      <p>그래서 AI가 실수해도 결과는 안 틀어지고, 게임도 안 멈춥니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P9</span><span class="sname">시연</span></div>
+    <div class="key">"직접 해보시죠"</div>
+    <div class="say">
+      <p>백문이 불여일견이죠. 직접 해보겠습니다.</p>
+      <p>QR 찍으시면 여러분 폰에서도 지금 바로 됩니다.</p>
+      <p class="stage">( 시연 — 접속, 선택 2~3번 진행 )</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P10</span><span class="sname">마무리</span></div>
+    <div class="key">"지루한 검사를 게임으로 바꿔봤습니다"</div>
+    <div class="say">
+      <p>정리하겠습니다. 지루한 검사를 게임으로 바꿔봤고, 그걸 AWS 위에 안전하게 올렸습니다.</p>
+      <p>코드는 화면의 GitHub에 다 있습니다.</p>
+      <p>김도윤, 김민석, 이길주였습니다. 감사합니다.</p>
+    </div>
+    <div class="cue">( 페이지 넘김 )</div>
+  </section>
+
+  <section>
+    <div class="head"><span class="pno">P11</span><span class="sname">Q&amp;A</span></div>
+    <div class="say">
+      <p>질문 받겠습니다. 그동안 QR로 게임 해보셔도 좋습니다.</p>
+    </div>
+  </section>
+
+  <div class="backup">
+    <h2>시연 백업 플랜</h2>
+    <ul>
+      <li>시연 URL: <span class="mono">http://bipa-t1-project-cloade-alb-925957610.ap-northeast-2.elb.amazonaws.com</span></li>
+      <li>발표장 네트워크에서 첫 접속 시 통신사 안내 페이지가 한 번 뜰 수 있음 (2초 후 자동 통과) — 발표 전 미리 한 번 접속해둘 것</li>
+      <li>서버 장애 시: 제출 문서의 결과 화면 캡처 3장으로 대체 설명</li>
+    </ul>
+  </div>
+</div>
