@@ -36,7 +36,6 @@
   .mono{font-family:var(--mono)}
   .gold{color:var(--gold)}
   .steel{color:var(--steel)}
-  .rule{height:1px;background:linear-gradient(90deg,var(--gold-deep),transparent 70%);margin:22px 0 0;border:0}
 
   .cards{display:grid;gap:20px}
   .card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px 26px;
@@ -45,9 +44,8 @@
   .card p{font-size:15.5px;color:var(--muted);line-height:1.62}
   .card .tag{font-size:12.5px;letter-spacing:.22em;color:var(--gold);font-weight:500}
   .card.steel .tag{color:var(--steel)}
-
-  .chip{display:inline-block;font-family:var(--mono);font-size:12.5px;color:var(--muted);
-    border:1px solid var(--line2);border-radius:3px;padding:3px 9px}
+  .tight .card{padding:18px 22px}
+  .tight .card p{font-size:14.5px}
 
   figure{margin:0}
   figcaption{font-size:14px;color:var(--dim);margin-top:12px;text-align:center}
@@ -55,7 +53,7 @@
   svg text{font-family:var(--sans)}
   svg .t-mono{font-family:var(--mono)}
 
-  /* ---------- S1 title ---------- */
+  /* ---------- title / close ---------- */
   .s-title{align-items:center;justify-content:center;text-align:center;padding:64px}
   .portal{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);opacity:.55;pointer-events:none}
   .s-title .meta{font-size:14px;letter-spacing:.34em;color:var(--muted);margin-bottom:30px}
@@ -64,16 +62,28 @@
   .s-title h1 em{font-style:normal;color:var(--gold)}
   .s-title .sub{font-family:var(--serif);font-weight:600;font-size:22px;color:var(--muted);
     margin-top:26px;line-height:1.6;position:relative}
-  .s-title .team{margin-top:44px;display:flex;gap:14px;justify-content:center;align-items:center;position:relative}
-  .s-title .team .name{font-size:19px;font-weight:700;letter-spacing:.12em}
-  .s-title .team .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-deep)}
+  .team{display:flex;gap:14px;justify-content:center;align-items:center;position:relative}
+  .team .name{font-size:18px;font-weight:700;letter-spacing:.12em}
+  .team .dot{width:4px;height:4px;border-radius:50%;background:var(--gold-deep)}
+  .s-title .team{margin-top:44px}
+  .s-title .team .name{font-size:19px}
   .s-title .hint{position:absolute;bottom:36px;left:0;right:0;font-size:13px;color:var(--dim);letter-spacing:.14em}
 
-  /* ---------- S2 idea ---------- */
-  .versus{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch;margin:22px 0 22px}
+  /* ---------- idea journey ---------- */
+  .flowline{display:flex;align-items:center;gap:12px;margin:30px 0 28px}
+  .fstep{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;text-align:center;flex:1}
+  .fstep .fk{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em}
+  .fstep .fv{font-size:17.5px;font-weight:700;margin-top:6px}
+  .fstep .fs{font-size:13px;color:var(--muted);margin-top:5px;line-height:1.5}
+  .fstep.hot{border-color:var(--gold-deep);background:linear-gradient(180deg,var(--gold-dim),var(--surface))}
+  .farrow{color:var(--gold-deep);font-size:20px;flex:0 0 auto}
+  .branchdots{display:flex;gap:9px;justify-content:center;margin-top:9px}
+  .bd{width:11px;height:11px;background:var(--dim);border-radius:50%}
+  .bd.combat{background:var(--gold);border-radius:0;transform:rotate(45deg) scale(.92)}
+  .scorerow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+  .versus{display:grid;grid-template-columns:1fr 64px 1fr;align-items:stretch;margin:0}
   .versus .side{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:18px 24px}
-  .tight .card{padding:18px 22px}
-  .tight .card p{font-size:14.5px}
   .versus .side.q{border-left:3px solid var(--line2)}
   .versus .side.a{border-left:3px solid var(--gold-deep)}
   .versus .side .k{font-size:13px;letter-spacing:.26em;color:var(--dim);margin-bottom:10px}
@@ -82,23 +92,10 @@
   .versus .side p{font-size:14.5px;color:var(--muted);margin-top:9px;line-height:1.6}
   .versus .arrow{display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:26px}
 
-  /* ---------- S3 game flow ---------- */
-  .flowline{display:flex;align-items:center;gap:12px;margin:34px 0 30px}
-  .fstep{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:16px 20px;text-align:center;flex:1}
-  .fstep .fk{font-family:var(--mono);font-size:12px;color:var(--dim);letter-spacing:.08em}
-  .fstep .fv{font-size:17.5px;font-weight:700;margin-top:6px}
-  .fstep .fs{font-size:13px;color:var(--muted);margin-top:5px}
-  .fstep.hot{border-color:var(--gold-deep);background:linear-gradient(180deg,var(--gold-dim),var(--surface))}
-  .farrow{color:var(--gold-deep);font-size:20px;flex:0 0 auto}
-  .branchdots{display:flex;gap:9px;justify-content:center;margin-top:9px}
-  .bd{width:11px;height:11px;background:var(--dim);border-radius:50%}
-  .bd.combat{background:var(--gold);border-radius:0;transform:rotate(45deg) scale(.92)}
-  .scorerow{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-
   /* ---------- diagrams ---------- */
   .diag-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
 
-  /* ---------- S5 services ---------- */
+  /* ---------- services ---------- */
   .svc{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px}
   .svc .card{padding:18px 16px 16px;gap:6px}
   .svc .card h3{font-size:16px}
@@ -106,19 +103,52 @@
   .svc .card .spec{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:auto;padding-top:10px}
   .svc .aws{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:500}
 
-  /* ---------- S7 principles ---------- */
-  .grid2x3{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:18px;margin-top:30px}
+  /* ---------- agent map ---------- */
+  .amap{display:grid;grid-template-columns:230px 1fr 1.35fr;border:1px solid var(--line);border-radius:6px;
+    overflow:hidden;margin-top:28px}
+  .amap>div{padding:16px 20px;border-bottom:1px solid var(--line);font-size:14.5px;line-height:1.55}
+  .amap>div:nth-last-child(-n+3){border-bottom:0}
+  .amap .hd{background:var(--surface2);font-size:12.5px;letter-spacing:.2em;font-weight:500;color:var(--muted);
+    padding:12px 20px}
+  .amap .hd.c-code{color:var(--steel)}
+  .amap .hd.c-ai{color:var(--gold)}
+  .amap .stage{background:var(--surface);font-weight:700;font-size:15px}
+  .amap .stage .ep{display:block;font-family:var(--mono);font-size:11.5px;color:var(--dim);font-weight:400;margin-top:4px}
+  .amap .code{background:rgba(143,168,216,.06);color:var(--muted)}
+  .amap .ai{background:rgba(224,177,94,.05);color:var(--muted)}
+  .amap b{color:var(--ink);font-weight:700}
+  .amap .code b{color:var(--steel)}
+  .amap .ai b{color:var(--gold)}
+  .amap-note{margin-top:16px;font-size:14px;color:var(--dim);text-align:center}
 
-  /* ---------- S9 demo ---------- */
-  .demo-url{display:inline-flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--gold-deep);
-    border-radius:6px;padding:16px 26px;margin:26px 0 8px}
-  .demo-url .u{font-family:var(--mono);font-size:24px;color:var(--gold)}
-  .watch{margin-top:26px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  /* ---------- demo ---------- */
+  .demo-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:stretch;margin-top:8px}
+  .demo-left{display:flex;flex-direction:column;justify-content:center;gap:18px}
+  .demo-btn{display:inline-flex;align-items:center;gap:14px;background:linear-gradient(180deg,var(--gold),var(--gold-deep));
+    color:#1A1408;border-radius:8px;padding:20px 34px;text-decoration:none;font-weight:700;font-size:24px;
+    box-shadow:0 6px 30px rgba(224,177,94,.25);width:max-content}
+  .demo-btn .ar{font-size:22px}
+  .demo-url-s{font-family:var(--mono);font-size:14px;color:var(--dim);word-break:break-all;max-width:56ch}
+  .qr-card{background:#fff;border-radius:10px;padding:20px;display:flex;flex-direction:column;align-items:center;
+    justify-content:center;gap:12px}
+  .qr-card img{width:216px;height:216px;image-rendering:pixelated}
+  .qr-card .q-label{color:#3A3355;font-size:14.5px;font-weight:700;letter-spacing:.06em}
+  .watch{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
 
-  /* ---------- S10 close ---------- */
+  /* ---------- close / QA ---------- */
   .s-close{align-items:center;justify-content:center;text-align:center}
-  .s-close .thanks{font-family:var(--serif);font-weight:900;font-size:66px;margin:34px 0 12px;position:relative}
+  .s-close .thanks{font-family:var(--serif);font-weight:900;font-size:60px;margin:30px 0 12px;position:relative}
   .learn{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:1040px;margin:8px auto 0;text-align:left}
+  .gh-btn{position:relative;margin-top:24px;display:inline-flex;align-items:center;gap:10px;
+    font-family:var(--mono);font-size:15px;color:var(--gold);text-decoration:none;
+    border:1px solid var(--gold-deep);border-radius:6px;padding:10px 20px}
+  .s-qa{align-items:center;justify-content:center;text-align:center}
+  .s-qa h1{font-family:var(--serif);font-weight:900;font-size:120px;color:var(--ink);position:relative;
+    text-shadow:0 0 60px rgba(224,177,94,.25)}
+  .s-qa h1 em{font-style:normal;color:var(--gold)}
+  .s-qa .sub{font-family:var(--serif);font-size:24px;color:var(--muted);margin-top:22px;position:relative}
+  .s-qa .links{position:relative;margin-top:44px;display:flex;gap:16px;justify-content:center;align-items:center;
+    font-family:var(--mono);font-size:13.5px;color:var(--dim)}
 
   /* ---------- HUD ---------- */
   #hud{position:absolute;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;
@@ -155,49 +185,316 @@
     <div class="hint">← → 방향키 또는 클릭으로 진행 · F 전체화면</div>
   </section>
 
-  <!-- 2 · 아이디어 -->
+  <!-- 2 · [01] 아이디어 소개 -->
   <section class="slide">
-    <div class="eyebrow"><span class="no">01</span>아이디어</div>
-    <h2>검사지를 덮고, 이야기 속으로</h2>
-    <p class="lede">설문형 MBTI 검사는 "나는 이런 사람"이라는 자기보고에 의존합니다.
-      우리는 질문 대신 <b style="color:var(--ink)">상황</b>을 주고, 이야기 속 실제 선택으로 성향을 읽습니다.</p>
+    <div class="eyebrow"><span class="no">01</span>아이디어 소개</div>
+    <h2>챗봇 게임에 MBTI를 입히다</h2>
     <div class="fill">
+      <div class="flowline">
+        <div class="fstep">
+          <div class="fk">출발</div><div class="fv">텍스트 챗봇 게임</div>
+          <div class="fs">챗봇 형식으로 대화하며 진행하는<br>텍스트 어드벤처를 처음 기획</div>
+        </div>
+        <div class="farrow">→</div>
+        <div class="fstep">
+          <div class="fk">테마</div><div class="fv">MBTI라는 문제</div>
+          <div class="fs">실제 검사는 오래 걸리고<br>반복되는 지문을 계속 풀어야 하는 지루함</div>
+        </div>
+        <div class="farrow">→</div>
+        <div class="fstep hot">
+          <div class="fk">해법</div><div class="fv">RPG로 녹여내다</div>
+          <div class="fs">역할에 몰입해 상황마다 판단하고<br>분기를 선택하면 — 그게 곧 검사</div>
+        </div>
+      </div>
       <div class="versus">
         <div class="side q">
-          <div class="k">기존 방식</div>
+          <div class="k">기존 검사</div>
           <div class="v">"당신은 모임에서 먼저 말을 거는 편입니까?"</div>
-          <p>수십 개 문항 · 지루함 · 바람직해 보이는 답을 고르게 되는 왜곡</p>
+          <p>수십 개 반복 지문 · 지루함 · 바람직해 보이는 답을 고르게 되는 왜곡</p>
         </div>
         <div class="arrow">→</div>
         <div class="side a">
           <div class="k">차원문 너머</div>
           <div class="v">낯선 이세계 마을 — 주민에게 먼저 다가간다 / 물러나 관찰한다</div>
-          <p>용사 소환 서사 8개 분기 · 몰입한 순간의 선택이 곧 데이터</p>
-        </div>
-      </div>
-      <div class="cards tight" style="grid-template-columns:repeat(3,1fr)">
-        <div class="card">
-          <div class="tag">서사</div>
-          <h3>설문 대신 스토리</h3>
-          <p>프롤로그부터 엔딩까지 하나의 판타지 서사. 선택 8번이면 검사가 끝납니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">정확도</div>
-          <h3>위기가 본성을 드러낸다</h3>
-          <p>일상 분기보다 전투 분기 선택에 2배 가중치 — 고압 상황의 선택이 성향을 더 강하게 반영합니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">AI 게임 마스터</div>
-          <h3>연출·결과지·상담까지</h3>
-          <p>Bedrock의 Claude가 장면과 선택지 문구를 매 플레이 새로 생성하고, 근거 인용 결과지와 판정 후 자유 Q&amp;A까지 담당합니다.</p>
+          <p>용사 소환 서사 8개 분기 · 몰입한 순간의 자연스러운 선택이 곧 데이터</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 3 · 게임 구조 -->
+  <!-- 3 · [02] AWS 기술 스택 — 서비스 나열 -->
   <section class="slide">
-    <div class="eyebrow"><span class="no">02</span>게임 구조</div>
+    <div class="eyebrow"><span class="no">02</span>AWS 기술 스택</div>
+    <h2>10개 서비스, 각자 한 가지 일</h2>
+    <div class="fill">
+      <div class="svc">
+        <div class="card">
+          <div class="aws">COMPUTE</div><h3>Amazon EC2</h3>
+          <p class="role">FastAPI 게임 서버. 점수 엔진·세션·API 전부 이 위에서 동작</p>
+          <div class="spec">t3.micro · 서울 · systemd</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI</div><h3>Amazon Bedrock</h3>
+          <p class="role">Claude Haiku 4.5 — 장면 생성·내레이션·결과지·Q&amp;A (Converse API)</p>
+          <div class="spec">global 추론 프로필</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI · RAG</div><h3>Knowledge Bases</h3>
+          <p class="role">스토리·MBTI 문서 검색을 완전관리형으로 — 청크·임베딩·검색 자동화</p>
+          <div class="spec">story KB · mbti KB</div>
+        </div>
+        <div class="card">
+          <div class="aws">AI</div><h3>Titan Embeddings V2</h3>
+          <p class="role">KB 수집 시 문서 청크를 1024차원 벡터로 변환</p>
+          <div class="spec">1024-dim · cosine</div>
+        </div>
+        <div class="card">
+          <div class="aws">STORAGE</div><h3>Amazon S3</h3>
+          <p class="role">지식베이스 원문 문서 저장소. s3 sync 한 번으로 자료 갱신</p>
+          <div class="spec">story/ · mbti/ 접두사</div>
+        </div>
+        <div class="card">
+          <div class="aws">STORAGE</div><h3>Amazon S3 Vectors</h3>
+          <p class="role">임베딩 벡터 전용 스토리지 — 별도 벡터 DB 서버 없이 인덱스 운영</p>
+          <div class="spec">벡터 버킷 · 인덱스 ×2</div>
+        </div>
+        <div class="card">
+          <div class="aws">NETWORK</div><h3>Amazon VPC</h3>
+          <p class="role">퍼블릭·프라이빗 서브넷 분리 — 서버는 NAT 게이트웨이로 나가기만</p>
+          <div class="spec">NAT GW · 10.0.0.0/16</div>
+        </div>
+        <div class="card">
+          <div class="aws">NETWORK</div><h3>ALB</h3>
+          <p class="role">유일한 공개 진입점 — 80 수신, 프라이빗 EC2의 8000으로 전달</p>
+          <div class="spec">헬스체크 /health</div>
+        </div>
+        <div class="card">
+          <div class="aws">SECURITY</div><h3>AWS IAM</h3>
+          <p class="role">EC2 인스턴스 role로 권한 공급. 코드·서버에 액세스 키 0개</p>
+          <div class="spec">InvokeModel · Retrieve</div>
+        </div>
+        <div class="card">
+          <div class="aws">OPS</div><h3>Systems Manager</h3>
+          <p class="role">SSH 키 없이 접속·배포 — Session Manager와 send-command</p>
+          <div class="spec">SSM Agent</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · [02] 아키텍처 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">02</span>AWS 기술 스택 — 아키텍처</div>
+    <h2>열린 문은 하나, 나가는 길도 하나</h2>
+    <div class="diag-wrap">
+      <figure>
+        <svg viewBox="0 0 1120 460" role="img" aria-label="플레이어는 퍼블릭 서브넷의 ALB 80 포트로만 접근한다. 게임 서버 EC2는 퍼블릭 IP 없이 프라이빗 서브넷에 있고, ALB에서만 8000 포트를 받는다. 아웃바운드는 NAT 게이트웨이를 거쳐 Bedrock의 Claude와 Knowledge Base를 호출한다. S3 문서는 Titan 임베딩으로 S3 Vectors 인덱스에 수집된다.">
+          <defs>
+            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
+            </marker>
+            <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
+            </marker>
+          </defs>
+
+          <rect x="10" y="126" width="140" height="96" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="80" y="166" text-anchor="middle" fill="#EFEAE0" font-size="16" font-weight="700">플레이어</text>
+          <text x="80" y="188" text-anchor="middle" fill="#A79FB8" font-size="12.5">브라우저 · 챗 UI</text>
+
+          <rect x="196" y="36" width="506" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="214" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">Amazon VPC — 서울</text>
+          <text x="500" y="62" fill="#6E668A" font-size="11.5" class="t-mono">10.0.0.0/16</text>
+
+          <rect x="214" y="84" width="210" height="340" rx="6" fill="rgba(224,177,94,.04)" stroke="#3A3355"/>
+          <text x="232" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">퍼블릭 서브넷</text>
+
+          <rect x="228" y="130" width="182" height="88" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
+          <text x="319" y="160" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">ALB</text>
+          <text x="319" y="181" text-anchor="middle" fill="#A79FB8" font-size="12">유일한 공개 진입점</text>
+          <text x="319" y="200" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">:80 · 헬스체크 /health</text>
+
+          <rect x="228" y="250" width="182" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="319" y="280" text-anchor="middle" fill="#EFEAE0" font-size="14.5" font-weight="700">NAT 게이트웨이</text>
+          <text x="319" y="301" text-anchor="middle" fill="#A79FB8" font-size="12">EC2 아웃바운드 전용</text>
+          <text x="319" y="320" text-anchor="middle" fill="#6E668A" font-size="11.5">들어오는 연결은 없음</text>
+
+          <rect x="444" y="84" width="240" height="340" rx="6" fill="rgba(143,168,216,.04)" stroke="#3A3355"/>
+          <text x="462" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">프라이빗 서브넷</text>
+
+          <rect x="458" y="130" width="212" height="256" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="474" y="158" fill="#EFEAE0" font-size="15.5" font-weight="700">EC2 · FastAPI</text>
+          <text x="474" y="177" fill="#6E668A" font-size="11.5" class="t-mono">퍼블릭 IP 없음</text>
+
+          <rect x="474" y="192" width="180" height="52" rx="4" fill="rgba(143,168,216,.13)" stroke="#8FA8D8" stroke-opacity=".5"/>
+          <text x="488" y="214" fill="#8FA8D8" font-size="13" font-weight="700">engine — 점수·판정</text>
+          <text x="488" y="232" fill="#A79FB8" font-size="11.5">순수 코드 · 인메모리 세션</text>
+
+          <rect x="474" y="256" width="180" height="52" rx="4" fill="rgba(224,177,94,.12)" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="488" y="278" fill="#E0B15E" font-size="13" font-weight="700">llm + rag — 연출·지식</text>
+          <text x="488" y="296" fill="#A79FB8" font-size="11.5">실패 시 로컬 폴백</text>
+
+          <rect x="474" y="324" width="180" height="30" rx="3" fill="none" stroke="#3A3355"/>
+          <text x="564" y="344" text-anchor="middle" fill="#A79FB8" font-size="11.5">IAM Role · SSM (키·SSH 없음)</text>
+
+          <rect x="740" y="36" width="368" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="758" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 관리형 서비스 — VPC 밖</text>
+
+          <rect x="756" y="84" width="336" height="76" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
+          <text x="772" y="112" fill="#E0B15E" font-size="15" font-weight="700">Bedrock · Claude Haiku 4.5</text>
+          <text x="772" y="133" fill="#A79FB8" font-size="12">장면 생성 · 내레이션 · 결과지 · Q&amp;A</text>
+          <text x="772" y="151" fill="#6E668A" font-size="11" class="t-mono">Converse · global 추론 프로필</text>
+
+          <rect x="756" y="182" width="336" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="772" y="210" fill="#EFEAE0" font-size="15" font-weight="700">Knowledge Bases ×2</text>
+          <text x="772" y="231" fill="#A79FB8" font-size="12">story(세계관) · mbti(팀 자료)</text>
+          <text x="772" y="249" fill="#6E668A" font-size="11" class="t-mono">Retrieve — 시맨틱 top-k</text>
+
+          <rect x="756" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="772" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 Vectors</text>
+          <text x="772" y="340" fill="#A79FB8" font-size="11.5">벡터 인덱스 ×2</text>
+          <text x="772" y="358" fill="#6E668A" font-size="11" class="t-mono">1024차원 cosine</text>
+
+          <rect x="932" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="948" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 문서 버킷</text>
+          <text x="948" y="340" fill="#A79FB8" font-size="11.5">세계관 · MBTI 원문</text>
+          <text x="948" y="358" fill="#6E668A" font-size="11" class="t-mono">story/ · mbti/</text>
+
+          <text x="924" y="414" text-anchor="middle" fill="#6E668A" font-size="11.5">Titan Embeddings V2로 청크 임베딩</text>
+
+          <line x1="150" y1="174" x2="222" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <text x="186" y="160" text-anchor="middle" fill="#A79FB8" font-size="12">HTTP :80</text>
+
+          <line x1="410" y1="174" x2="452" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
+          <text x="431" y="160" text-anchor="middle" fill="#A79FB8" font-size="11.5">:8000</text>
+
+          <line x1="458" y1="294" x2="416" y2="294" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
+
+          <line x1="670" y1="200" x2="750" y2="130" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="716" y="158" text-anchor="middle" fill="#E0B15E" font-size="12">Converse</text>
+
+          <line x1="670" y1="262" x2="750" y2="228" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="708" y="258" text-anchor="middle" fill="#E0B15E" font-size="12">Retrieve</text>
+
+          <line x1="926" y1="336" x2="922" y2="336" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
+          <text x="924" y="284" text-anchor="middle" fill="#A79FB8" font-size="11">수집</text>
+          <line x1="836" y1="286" x2="836" y2="264" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
+
+          <line x1="20" y1="404" x2="426" y2="404" stroke="#6E668A" stroke-width="1.4" stroke-dasharray="7 6"/>
+          <text x="440" y="409" fill="#E0B15E" font-size="15" font-weight="700">✕</text>
+          <text x="222" y="392" fill="#6E668A" font-size="11.5">인터넷 → EC2·데이터 직접 접근 차단 (SG: 8000은 ALB만 허용)</text>
+        </svg>
+        <figcaption>공개된 문은 ALB의 80뿐 — EC2는 퍼블릭 IP 없이 NAT로 나가기만 하고, 점수는 코드(<span class="steel">스틸</span>)·서사는 모델(<span class="gold">골드</span>)</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 5 · [02] RAG 파이프라인 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">02</span>AWS 기술 스택 — RAG</div>
+    <h2>지식은 문서로 넣고, 프롬프트로 꺼낸다</h2>
+    <div class="diag-wrap">
+      <figure>
+        <svg viewBox="0 0 1120 400" role="img" aria-label="적재 단계: 문서를 S3에 올리면 수집 작업이 청크 분할과 Titan V2 임베딩을 거쳐 S3 Vectors 인덱스를 만든다. 조회 단계: 게임 장면이나 질문이 들어오면 Knowledge Base Retrieve로 관련 청크를 찾아 프롬프트에 주입하고 Claude가 연출한다.">
+          <defs>
+            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
+            </marker>
+            <marker id="arg2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
+            </marker>
+          </defs>
+
+          <text x="12" y="52" fill="#A79FB8" font-size="13" letter-spacing="3">적재 — 자료를 넣을 때</text>
+          <line x1="12" y1="64" x2="1108" y2="64" stroke="#2E2843"/>
+
+          <rect x="12" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="110" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">문서 작성</text>
+          <text x="110" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">스토리 · MBTI 지식 (.md)</text>
+
+          <rect x="312" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="410" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 업로드</text>
+          <text x="410" y="150" text-anchor="middle" fill="#6E668A" font-size="12" class="t-mono">aws s3 sync</text>
+
+          <rect x="612" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="710" y="120" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">수집 작업</text>
+          <text x="710" y="141" text-anchor="middle" fill="#A79FB8" font-size="12">청크 분할 + Titan V2 임베딩</text>
+          <text x="710" y="160" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">start-ingestion-job</text>
+
+          <rect x="912" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="1010" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 Vectors 인덱스</text>
+          <text x="1010" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">1024차원 · cosine ×2</text>
+
+          <line x1="208" y1="134" x2="306" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+          <line x1="508" y1="134" x2="606" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+          <line x1="808" y1="134" x2="906" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
+
+          <text x="12" y="238" fill="#E0B15E" font-size="13" letter-spacing="3">조회 — 게임이 돌 때</text>
+          <line x1="12" y1="250" x2="1108" y2="250" stroke="#2E2843"/>
+
+          <rect x="12" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="110" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">게임 이벤트</text>
+          <text x="110" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">장면 진입 · 결과지 · 질문</text>
+
+          <rect x="312" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="410" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">KB Retrieve</text>
+          <text x="410" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">유사도 상위 청크 검색</text>
+
+          <rect x="612" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="710" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">프롬프트 주입</text>
+          <text x="710" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">system + 검색 자료 + 선택 이력</text>
+
+          <rect x="912" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="1010" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">Claude 생성</text>
+          <text x="1010" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">장면·선택지 · 결과지 · 답변</text>
+
+          <line x1="208" y1="320" x2="306" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+          <line x1="508" y1="320" x2="606" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+          <line x1="808" y1="320" x2="906" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
+
+          <line x1="410" y1="272" x2="1006" y2="182" stroke="#6E668A" stroke-width="1.3" stroke-dasharray="5 5" marker-end="url(#ar2)"/>
+        </svg>
+        <figcaption>벡터로 색인한 두 개의 지식베이스(story·mbti) — 자료 추가는 <span class="mono">s3 sync</span> + 수집 작업 1회, 서버 재시작 불필요</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 6 · [02] 근거 기반 + 동적 스토리 + temperature -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">02</span>AWS 기술 스택 — RAG가 바꾸는 것</div>
+    <h2>범용 챗봇이 아니라, 근거로 말한다</h2>
+    <div class="fill">
+      <div class="versus" style="margin-bottom:22px">
+        <div class="side q">
+          <div class="k">범용 AI 답변</div>
+          <div class="v">"ISFJ는 일반적으로 따뜻하고 헌신적입니다…"</div>
+          <p>어디서나 들을 수 있는 일반론 — 내 플레이와 무관</p>
+        </div>
+        <div class="arrow">→</div>
+        <div class="side a">
+          <div class="k">차원문 너머의 답변</div>
+          <div class="v">"당신은 다리 위 트롤 앞에서 ○○했습니다 — 조사 자료에 따르면…"</div>
+          <p>벡터 검색된 MBTI 조사 자료 + 실제 선택 기록을 인용하는 근거 기반 답변</p>
+        </div>
+      </div>
+      <div class="cards tight" style="grid-template-columns:repeat(2,1fr)">
+        <div class="card">
+          <div class="tag">살아있는 스토리</div>
+          <h3>새로고침만 해도 다른 이야기</h3>
+          <p>KB 검색 쿼리에 선택 이력을 섞어 장면·선택지 문구를 매번 새로 생성 — 정형화된 고정 스토리가 아니라, F5로 다시 들어가도 도입부부터 다르고 선택에 따라 전개가 달라집니다.</p>
+        </div>
+        <div class="card">
+          <div class="tag">구조화된 창의성</div>
+          <h3>temperature 0.7의 균형</h3>
+          <p>너무 창의적이면 JSON 응답 구조가 깨질 수 있어 온도를 0.7로 조율 — 스키마 검증을 통과하는 안정성과 적당히 창의적인 스토리 진행을 동시에 잡았고, 생성 실패 시 고정 스토리로 폴백합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7 · [03] 게임 플로우 -->
+  <section class="slide">
+    <div class="eyebrow"><span class="no">03</span>게임 플로우 &amp; AI 에이전트</div>
     <h2>선택 8번, 동점 없는 판정</h2>
     <div class="fill">
       <div class="flowline">
@@ -238,357 +535,76 @@
     </div>
   </section>
 
-  <!-- 4 · 아키텍처 -->
+  <!-- 8 · [03] AI 에이전트 호출 맵 -->
   <section class="slide">
-    <div class="eyebrow"><span class="no">03</span>시스템 아키텍처</div>
-    <h2>열린 문은 하나, 나가는 길도 하나</h2>
-    <div class="diag-wrap">
-      <figure>
-        <svg viewBox="0 0 1120 460" role="img" aria-label="플레이어는 퍼블릭 서브넷의 ALB 80 포트로만 접근한다. 게임 서버 EC2는 퍼블릭 IP 없이 프라이빗 서브넷에 있고, ALB에서만 8000 포트를 받는다. 아웃바운드는 NAT 게이트웨이를 거쳐 Bedrock의 Claude와 Knowledge Base를 호출한다. S3 문서는 Titan 임베딩으로 S3 Vectors 인덱스에 수집된다.">
-          <defs>
-            <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
-            </marker>
-            <marker id="arg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
-            </marker>
-          </defs>
-
-          <!-- player -->
-          <rect x="10" y="126" width="140" height="96" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="80" y="166" text-anchor="middle" fill="#EFEAE0" font-size="16" font-weight="700">플레이어</text>
-          <text x="80" y="188" text-anchor="middle" fill="#A79FB8" font-size="12.5">브라우저 · 챗 UI</text>
-
-          <!-- VPC -->
-          <rect x="196" y="36" width="506" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
-          <text x="214" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">Amazon VPC — 서울</text>
-          <text x="500" y="62" fill="#6E668A" font-size="11.5" class="t-mono">10.0.0.0/16</text>
-
-          <!-- public subnet -->
-          <rect x="214" y="84" width="210" height="340" rx="6" fill="rgba(224,177,94,.04)" stroke="#3A3355"/>
-          <text x="232" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">퍼블릭 서브넷</text>
-
-          <rect x="228" y="130" width="182" height="88" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
-          <text x="319" y="160" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">ALB</text>
-          <text x="319" y="181" text-anchor="middle" fill="#A79FB8" font-size="12">유일한 공개 진입점</text>
-          <text x="319" y="200" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">:80 · 헬스체크 /health</text>
-
-          <rect x="228" y="250" width="182" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="319" y="280" text-anchor="middle" fill="#EFEAE0" font-size="14.5" font-weight="700">NAT 게이트웨이</text>
-          <text x="319" y="301" text-anchor="middle" fill="#A79FB8" font-size="12">EC2 아웃바운드 전용</text>
-          <text x="319" y="320" text-anchor="middle" fill="#6E668A" font-size="11.5">들어오는 연결은 없음</text>
-
-          <!-- private subnet -->
-          <rect x="444" y="84" width="240" height="340" rx="6" fill="rgba(143,168,216,.04)" stroke="#3A3355"/>
-          <text x="462" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">프라이빗 서브넷</text>
-
-          <rect x="458" y="130" width="212" height="256" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="474" y="158" fill="#EFEAE0" font-size="15.5" font-weight="700">EC2 · FastAPI</text>
-          <text x="474" y="177" fill="#6E668A" font-size="11.5" class="t-mono">퍼블릭 IP 없음</text>
-
-          <rect x="474" y="192" width="180" height="52" rx="4" fill="rgba(143,168,216,.13)" stroke="#8FA8D8" stroke-opacity=".5"/>
-          <text x="488" y="214" fill="#8FA8D8" font-size="13" font-weight="700">engine — 점수·판정</text>
-          <text x="488" y="232" fill="#A79FB8" font-size="11.5">순수 코드 · 인메모리 세션</text>
-
-          <rect x="474" y="256" width="180" height="52" rx="4" fill="rgba(224,177,94,.12)" stroke="#B8863B" stroke-opacity=".6"/>
-          <text x="488" y="278" fill="#E0B15E" font-size="13" font-weight="700">llm + rag — 연출·지식</text>
-          <text x="488" y="296" fill="#A79FB8" font-size="11.5">실패 시 로컬 폴백</text>
-
-          <rect x="474" y="324" width="180" height="30" rx="3" fill="none" stroke="#3A3355"/>
-          <text x="564" y="344" text-anchor="middle" fill="#A79FB8" font-size="11.5">IAM Role · SSM (키·SSH 없음)</text>
-
-          <!-- regional services -->
-          <rect x="740" y="36" width="368" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
-          <text x="758" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 관리형 서비스 — VPC 밖</text>
-
-          <rect x="756" y="84" width="336" height="76" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
-          <text x="772" y="112" fill="#E0B15E" font-size="15" font-weight="700">Bedrock · Claude Haiku 4.5</text>
-          <text x="772" y="133" fill="#A79FB8" font-size="12">장면 생성 · 내레이션 · 결과지 · Q&amp;A</text>
-          <text x="772" y="151" fill="#6E668A" font-size="11" class="t-mono">Converse · global 추론 프로필</text>
-
-          <rect x="756" y="182" width="336" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="772" y="210" fill="#EFEAE0" font-size="15" font-weight="700">Knowledge Bases ×2</text>
-          <text x="772" y="231" fill="#A79FB8" font-size="12">story(세계관) · mbti(팀 자료)</text>
-          <text x="772" y="249" fill="#6E668A" font-size="11" class="t-mono">Retrieve — 시맨틱 top-k</text>
-
-          <rect x="756" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="772" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 Vectors</text>
-          <text x="772" y="340" fill="#A79FB8" font-size="11.5">벡터 인덱스 ×2</text>
-          <text x="772" y="358" fill="#6E668A" font-size="11" class="t-mono">1024차원 cosine</text>
-
-          <rect x="932" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="948" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 문서 버킷</text>
-          <text x="948" y="340" fill="#A79FB8" font-size="11.5">세계관 · MBTI 원문</text>
-          <text x="948" y="358" fill="#6E668A" font-size="11" class="t-mono">story/ · mbti/</text>
-
-          <text x="924" y="414" text-anchor="middle" fill="#6E668A" font-size="11.5">Titan Embeddings V2로 청크 임베딩</text>
-
-          <!-- arrows -->
-          <line x1="150" y1="174" x2="222" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)" marker-start="url(#ar)"/>
-          <text x="186" y="160" text-anchor="middle" fill="#A79FB8" font-size="12">HTTP :80</text>
-
-          <line x1="410" y1="174" x2="452" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
-          <text x="431" y="160" text-anchor="middle" fill="#A79FB8" font-size="11.5">:8000</text>
-
-          <line x1="458" y1="294" x2="416" y2="294" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
-
-          <line x1="670" y1="200" x2="750" y2="130" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
-          <text x="716" y="158" text-anchor="middle" fill="#E0B15E" font-size="12">Converse</text>
-
-          <line x1="670" y1="262" x2="750" y2="228" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
-          <text x="708" y="258" text-anchor="middle" fill="#E0B15E" font-size="12">Retrieve</text>
-
-          <line x1="926" y1="336" x2="922" y2="336" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
-          <text x="924" y="284" text-anchor="middle" fill="#A79FB8" font-size="11">수집</text>
-          <line x1="836" y1="286" x2="836" y2="264" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
-
-          <!-- blocked direct access -->
-          <line x1="20" y1="404" x2="426" y2="404" stroke="#6E668A" stroke-width="1.4" stroke-dasharray="7 6"/>
-          <text x="440" y="409" fill="#E0B15E" font-size="15" font-weight="700">✕</text>
-          <text x="222" y="392" fill="#6E668A" font-size="11.5">인터넷 → EC2·데이터 직접 접근 차단 (SG: 8000은 ALB만 허용)</text>
-        </svg>
-        <figcaption>공개된 문은 ALB의 80뿐 — EC2는 퍼블릭 IP 없이 NAT로 나가기만 하고, 점수는 코드(<span class="steel">스틸</span>)·서사는 모델(<span class="gold">골드</span>)</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 5 · AWS 서비스 -->
-  <section class="slide">
-    <div class="eyebrow"><span class="no">04</span>사용한 AWS 서비스</div>
-    <h2>10개 서비스, 각자 한 가지 일</h2>
+    <div class="eyebrow"><span class="no">03</span>게임 플로우 &amp; AI 에이전트</div>
+    <h2>단계마다, AI를 부르는 방법이 다르다</h2>
     <div class="fill">
-      <div class="svc">
-        <div class="card">
-          <div class="aws">COMPUTE</div><h3>Amazon EC2</h3>
-          <p class="role">FastAPI 게임 서버. 점수 엔진·세션·API 전부 이 위에서 동작</p>
-          <div class="spec">t3.micro · 서울 · systemd</div>
-        </div>
-        <div class="card">
-          <div class="aws">AI</div><h3>Amazon Bedrock</h3>
-          <p class="role">Claude Haiku 4.5 — 장면 생성·내레이션·결과지·Q&amp;A (Converse API)</p>
-          <div class="spec">global 추론 프로필</div>
-        </div>
-        <div class="card">
-          <div class="aws">AI · RAG</div><h3>Knowledge Bases</h3>
-          <p class="role">스토리·MBTI 문서 검색을 완전관리형으로 — 청크·임베딩·검색 자동화</p>
-          <div class="spec">story KB · mbti KB</div>
-        </div>
-        <div class="card">
-          <div class="aws">AI</div><h3>Titan Embeddings V2</h3>
-          <p class="role">KB 수집 시 문서 청크를 1024차원 벡터로 변환</p>
-          <div class="spec">1024-dim · cosine</div>
-        </div>
-        <div class="card">
-          <div class="aws">STORAGE</div><h3>Amazon S3</h3>
-          <p class="role">지식베이스 원문 문서 저장소. s3 sync 한 번으로 자료 갱신</p>
-          <div class="spec">story/ · mbti/ 접두사</div>
-        </div>
-        <div class="card">
-          <div class="aws">STORAGE</div><h3>Amazon S3 Vectors</h3>
-          <p class="role">임베딩 벡터 전용 스토리지 — 별도 벡터 DB 서버 없이 인덱스 운영</p>
-          <div class="spec">인덱스 ×2</div>
-        </div>
-        <div class="card">
-          <div class="aws">NETWORK</div><h3>Amazon VPC</h3>
-          <p class="role">퍼블릭·프라이빗 서브넷 분리 — 서버는 NAT 게이트웨이로 나가기만</p>
-          <div class="spec">NAT GW · 10.0.0.0/16</div>
-        </div>
-        <div class="card">
-          <div class="aws">NETWORK</div><h3>ALB</h3>
-          <p class="role">유일한 공개 진입점 — 80 수신, 프라이빗 EC2의 8000으로 전달</p>
-          <div class="spec">헬스체크 /health</div>
-        </div>
-        <div class="card">
-          <div class="aws">SECURITY</div><h3>AWS IAM</h3>
-          <p class="role">EC2 인스턴스 role로 권한 공급. 코드·서버에 액세스 키 0개</p>
-          <div class="spec">InvokeModel · Retrieve</div>
-        </div>
-        <div class="card">
-          <div class="aws">OPS</div><h3>Systems Manager</h3>
-          <p class="role">SSH 키 없이 접속·배포 — Session Manager와 send-command</p>
-          <div class="spec">SSM Agent</div>
-        </div>
+      <div class="amap">
+        <div class="hd">단계</div>
+        <div class="hd c-code">코드가 한다 — 판정·규칙</div>
+        <div class="hd c-ai">AI가 한다 — 검색·생성 (Bedrock)</div>
+
+        <div class="stage">게임 시작<span class="ep">POST /api/game/start</span></div>
+        <div class="code">세션 생성 · 진행 상태 초기화</div>
+        <div class="ai"><b>게임 마스터</b> 프롬프트 — story KB 검색 재료로 프롤로그·첫 분기 연출</div>
+
+        <div class="stage">선택 제출 ×8<span class="ep">POST /api/game/choice</span></div>
+        <div class="code">점수 +1(일상)/+2(전투) 적용 · 근거 문장 기록</div>
+        <div class="ai">선택 이력을 섞어 <b>KB 재검색</b> → 다음 장면·선택지 문구 생성 (JSON 검증)</div>
+
+        <div class="stage">8번째 선택 직후<span class="ep">자동</span></div>
+        <div class="code"><b>MBTI 판정</b> — 축별 합산 비교, LLM 관여 없음</div>
+        <div class="ai"><b>분석가</b> 프롬프트 — 선택 기록 인용 + mbti KB 근거로 결과지 작성</div>
+
+        <div class="stage">자유 질문<span class="ep">POST /api/chat</span></div>
+        <div class="code">세션·완주 검증</div>
+        <div class="ai"><b>상담 챗봇</b> 프롬프트 — mbti KB 검색 근거로만 답변, 자료 밖은 모른다고 답함</div>
       </div>
+      <div class="amap-note">모든 호출은 Converse API · temperature 0.7 · 실패 시 고정 스토리 폴백 — AI가 실패해도 게임은 죽지 않는다</div>
     </div>
   </section>
 
-  <!-- 6 · RAG 파이프라인 -->
+  <!-- 9 · [04] 시연 -->
   <section class="slide">
-    <div class="eyebrow"><span class="no">05</span>RAG 파이프라인</div>
-    <h2>지식은 문서로 넣고, 프롬프트로 꺼낸다</h2>
-    <div class="diag-wrap">
-      <figure>
-        <svg viewBox="0 0 1120 400" role="img" aria-label="적재 단계: 문서를 S3에 올리면 수집 작업이 청크 분할과 Titan V2 임베딩을 거쳐 S3 Vectors 인덱스를 만든다. 조회 단계: 게임 장면이나 질문이 들어오면 Knowledge Base Retrieve로 관련 청크를 찾아 프롬프트에 주입하고 Claude가 연출한다.">
-          <defs>
-            <marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
-            </marker>
-            <marker id="arg2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-              <path d="M0 0 L10 5 L0 10 z" fill="#E0B15E"/>
-            </marker>
-          </defs>
-
-          <!-- lane labels -->
-          <text x="12" y="52" fill="#A79FB8" font-size="13" letter-spacing="3">적재 — 자료를 넣을 때</text>
-          <line x1="12" y1="64" x2="1108" y2="64" stroke="#2E2843"/>
-
-          <rect x="12" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="110" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">문서 작성</text>
-          <text x="110" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">스토리 · MBTI 지식 (.md)</text>
-
-          <rect x="312" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="410" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 업로드</text>
-          <text x="410" y="150" text-anchor="middle" fill="#6E668A" font-size="12" class="t-mono">aws s3 sync</text>
-
-          <rect x="612" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="710" y="120" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">수집 작업</text>
-          <text x="710" y="141" text-anchor="middle" fill="#A79FB8" font-size="12">청크 분할 + Titan V2 임베딩</text>
-          <text x="710" y="160" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">start-ingestion-job</text>
-
-          <rect x="912" y="92" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="1010" y="127" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">S3 Vectors 인덱스</text>
-          <text x="1010" y="150" text-anchor="middle" fill="#A79FB8" font-size="12">1024차원 · cosine ×2</text>
-
-          <line x1="208" y1="134" x2="306" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
-          <line x1="508" y1="134" x2="606" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
-          <line x1="808" y1="134" x2="906" y2="134" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar2)"/>
-
-          <!-- retrieve lane -->
-          <text x="12" y="238" fill="#E0B15E" font-size="13" letter-spacing="3">조회 — 게임이 돌 때</text>
-          <line x1="12" y1="250" x2="1108" y2="250" stroke="#2E2843"/>
-
-          <rect x="12" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="110" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">게임 이벤트</text>
-          <text x="110" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">장면 진입 · 결과지 · 질문</text>
-
-          <rect x="312" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
-          <text x="410" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">KB Retrieve</text>
-          <text x="410" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">유사도 상위 청크 검색</text>
-
-          <rect x="612" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="710" y="313" text-anchor="middle" fill="#EFEAE0" font-size="15" font-weight="700">프롬프트 주입</text>
-          <text x="710" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">system + 검색 자료 + 선택 이력</text>
-
-          <rect x="912" y="278" width="196" height="84" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".6"/>
-          <text x="1010" y="313" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">Claude 생성</text>
-          <text x="1010" y="336" text-anchor="middle" fill="#A79FB8" font-size="12">장면·선택지 · 결과지 · 답변</text>
-
-          <line x1="208" y1="320" x2="306" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
-          <line x1="508" y1="320" x2="606" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
-          <line x1="808" y1="320" x2="906" y2="320" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg2)"/>
-
-          <!-- vertical link -->
-          <line x1="410" y1="272" x2="1006" y2="182" stroke="#6E668A" stroke-width="1.3" stroke-dasharray="5 5" marker-end="url(#ar2)"/>
-        </svg>
-        <figcaption>검색 쿼리에 최근 선택을 섞어 플레이마다 장면이 달라진다 · 자료 추가는 <span class="mono">s3 sync</span> + 수집 작업 1회, 서버 재시작 불필요</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <!-- 7 · 설계 원칙 -->
-  <section class="slide">
-    <div class="eyebrow"><span class="no">06</span>설계 원칙</div>
-    <h2>점수는 코드가, 서사는 모델이</h2>
-    <div class="fill">
-      <div class="grid2x3 cards">
-        <div class="card steel">
-          <div class="tag">신뢰성</div>
-          <h3>LLM은 판정에 손대지 못한다</h3>
-          <p>점수 규칙은 storyboard 데이터에 정적 정의, 합산·판정은 엔진 코드. 모델 출력이 점수에 닿는 경로 자체가 없습니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">보안</div>
-          <h3>액세스 키 0개</h3>
-          <p>EC2 IAM role이 자격증명을 공급하고 권한은 InvokeModel·Retrieve로 최소화. 서버는 프라이빗 서브넷 — 공개된 건 ALB의 80뿐입니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">개발 경험</div>
-          <h3>stub 모드</h3>
-          <p><span class="mono">GAME_LLM=stub</span> 하나로 AWS 없이 완주 테스트 — 비용 0원으로 로컬 개발, 배포 시 <span class="mono">bedrock</span>으로 전환.</p>
-        </div>
-        <div class="card">
-          <div class="tag">안정성</div>
-          <h3>실패해도 게임은 죽지 않는다</h3>
-          <p>KB 검색·장면 생성이 실패하면 자동으로 고정 스토리로 폴백. RAG가 꺼져 있어도 완주가 보장되는 구조입니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">협업</div>
-          <h3>JSON 계약서 하나로 분업</h3>
-          <p>API.md에 요청·응답 폼을 전부 명세. 프론트는 목 데이터로, 백엔드는 stub으로 — 서로를 기다리지 않고 개발했습니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">범위 관리</div>
-          <h3>의도된 단순함</h3>
-          <p>세션은 서버 인메모리, DB 없음. 부트캠프 범위에 맞춘 선택이고, 필요해지는 시점과 확장 경로(S3 덤프)를 문서에 남겼습니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 8 · 프론트엔드 -->
-  <section class="slide">
-    <div class="eyebrow"><span class="no">07</span>프론트엔드</div>
-    <h2>비주얼 노벨의 문법으로</h2>
-    <p class="lede">챗 UI가 아니라 게임 화면처럼 — 텍스트 게임 레퍼런스를 조사해 서술과 대사를 나누는 비주얼 노벨 관례를 따랐습니다.</p>
-    <div class="fill">
-      <div class="cards" style="grid-template-columns:repeat(2,1fr);gap:18px">
-        <div class="card">
-          <div class="tag">연출</div>
-          <h3>장면이 살아 있다</h3>
-          <p>서술(어두운 패널)과 대사(금빛 패널, 화자 명찰) 분리 · 배경 크로스페이드 · 등장인물 입상 · 장 전환 타이틀 카드 · 판정 연출 "차원문이 당신을 읽고 있습니다"</p>
-        </div>
-        <div class="card">
-          <div class="tag">아트</div>
-          <h3>이미지 16장, 전부 생성형</h3>
-          <p>배경 10장 + 인물 6명 — Bedrock 이미지 모델에 구도 스케치를 넣어 제작. 파일이 없으면 그라디언트·실루엣으로 자동 폴백해 깨지지 않습니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">구조</div>
-          <h3>플래그 하나로 목 ↔ 실서버</h3>
-          <p><span class="mono">USE_MOCK</span> 한 줄만 바꾸면 백엔드 연결. 목과 실서버가 같은 JSON 계약을 지키므로 렌더링 코드는 그대로입니다.</p>
-        </div>
-        <div class="card">
-          <div class="tag">품질</div>
-          <h3>브라우저 없이 완주 테스트</h3>
-          <p>jsdom 헤드리스 테스트가 8분기를 실제로 클릭해 판정·백로그까지 검증. 접근성으로 키보드 선택과 모션 감소 설정도 지원합니다.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 9 · 데모 -->
-  <section class="slide">
-    <div class="eyebrow"><span class="no">08</span>라이브 데모</div>
+    <div class="eyebrow"><span class="no">04</span>실제 서비스 시연</div>
     <h2>직접 차원문을 건너보겠습니다</h2>
     <div class="fill">
-      <div>
-        <div class="demo-url"><span style="font-size:13px;letter-spacing:.24em;color:var(--muted)">DEMO</span>
-          <span class="u" style="font-size:17px">http://bipa-t1-project-cloade-alb-925957610.ap-northeast-2.elb.amazonaws.com</span></div>
-        <div style="font-size:13px;color:var(--dim)">ALB 도메인 — 유일한 공개 진입점. 게임 서버는 프라이빗 서브넷에서 퍼블릭 IP 없이 동작</div>
-      </div>
-      <div class="watch">
-        <div class="card">
-          <div class="tag">시나리오</div>
-          <h3>소환 → 선택 8번 → 판정 → Q&amp;A</h3>
-          <p>프롤로그에서 시작해 일상·전투 분기를 지나면 판정 연출과 함께 MBTI 카드가 나타나고, "INTJ랑 잘 맞아?" 같은 자유 질문에 챗봇이 답합니다. KB 동적 생성 덕에 같은 분기도 매 플레이 문장이 달라집니다.</p>
+      <div class="demo-grid">
+        <div class="demo-left">
+          <a class="demo-btn" href="http://bipa-t1-project-cloade-alb-925957610.ap-northeast-2.elb.amazonaws.com" target="_blank" rel="noopener">
+            게임 접속하기 <span class="ar">→</span>
+          </a>
+          <div class="demo-url-s">http://bipa-t1-project-cloade-alb-925957610.ap-northeast-2.elb.amazonaws.com</div>
+          <div class="watch" style="margin-top:6px">
+            <div class="card tight" style="padding:16px 20px">
+              <div class="tag">시나리오</div>
+              <h3 style="font-size:17px">소환 → 선택 8번 → 판정 → Q&amp;A</h3>
+              <p style="font-size:13.5px">일상·전투 분기를 지나면 판정 연출과 MBTI 카드, 이후 자유 질문. 같은 분기도 매 플레이 문장이 다릅니다.</p>
+            </div>
+            <div class="card tight" style="padding:16px 20px">
+              <div class="tag">주목할 점</div>
+              <h3 style="font-size:17px">결과지가 내 선택을 인용한다</h3>
+              <p style="font-size:13.5px">실제 선택 문장이 근거로 등장하고, 일상과 전투가 갈린 축은 "평소에는 ~지만 위기에는 ~"으로 짚어줍니다.</p>
+            </div>
+          </div>
         </div>
-        <div class="card">
-          <div class="tag">주목할 점</div>
-          <h3>결과지가 내 선택을 인용한다</h3>
-          <p>"당신은 다리 위 트롤 앞에서 ~했습니다"처럼 실제 선택 문장이 근거로 등장하고, 일상과 전투에서 선택이 갈린 축은 "평소에는 ~지만 위기에는 ~"으로 짚어줍니다.</p>
+        <div class="qr-card">
+          <img src="data:image/svg+xml;charset=utf-8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27246%27%20height%3D%27246%27%20class%3D%27segno%27%3E%3Cg%20transform%3D%27scale%286%29%27%3E%3Cpath%20fill%3D%27%23fff%27%20d%3D%27M0%200h41v41h-41z%27%2F%3E%3Cpath%20class%3D%27qrline%27%20stroke%3D%27%2314101d%27%20d%3D%27M2%202.5h7m2%200h4m1%200h1m3%200h3m1%200h1m2%200h2m1%200h1m1%200h7m-37%201h1m5%200h1m1%200h2m5%200h1m4%200h1m1%200h1m1%200h1m5%200h1m5%200h1m-37%201h1m1%200h3m1%200h1m1%200h1m2%200h1m2%200h2m4%200h2m1%200h2m5%200h1m1%200h3m1%200h1m-37%201h1m1%200h3m1%200h1m1%200h1m1%200h3m3%200h6m1%200h3m4%200h1m1%200h3m1%200h1m-37%201h1m1%200h3m1%200h1m3%200h1m1%200h1m1%200h3m2%200h1m3%200h1m1%200h2m1%200h1m1%200h1m1%200h3m1%200h1m-37%201h1m5%200h1m2%200h3m1%200h4m1%200h1m2%200h2m2%200h2m1%200h1m1%200h1m5%200h1m-37%201h7m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h1m1%200h7m-29%201h2m3%200h1m2%200h1m1%200h2m2%200h3m3%200h1m-29%201h1m5%200h1m1%200h2m1%200h4m3%200h1m3%200h1m2%200h2m1%200h3m2%200h3m-35%201h1m1%200h1m3%200h1m2%200h2m5%200h3m1%200h3m2%200h3m2%200h2m1%200h2m-33%201h1m2%200h4m1%200h2m1%200h1m3%200h1m1%200h1m1%200h1m2%200h1m1%200h2m6%200h2m-37%201h2m1%200h3m2%200h1m3%200h1m1%200h3m2%200h2m1%200h1m1%200h1m3%200h4m1%200h1m2%200h1m-35%201h1m2%200h2m1%200h1m1%200h2m1%200h2m3%200h1m1%200h1m2%200h2m3%200h1m1%200h2m4%200h1m-36%201h1m1%200h2m3%200h1m2%200h2m1%200h2m1%200h1m1%200h3m1%200h1m3%200h1m1%200h1m1%200h1m1%200h1m-34%201h2m1%200h6m5%200h2m1%200h1m4%200h1m3%200h3m3%200h2m1%200h2m-37%201h3m4%200h4m1%200h2m1%200h1m1%200h2m3%200h1m5%200h1m1%200h1m1%200h3m-33%201h5m2%200h4m1%200h3m2%200h1m2%200h6m1%200h4m1%200h2m-36%201h2m3%200h1m1%200h1m1%200h3m1%200h1m4%200h3m2%200h1m1%200h1m1%200h1m3%200h1m3%200h1m-35%201h2m2%200h4m1%200h4m1%200h1m2%200h2m1%200h3m3%200h5m1%200h2m1%200h1m-36%201h3m1%200h1m3%200h2m2%200h1m4%200h2m2%200h1m3%200h1m1%200h1m1%200h1m5%200h1m-37%201h1m2%200h1m2%200h1m2%200h1m1%200h2m1%200h5m3%200h9m1%200h3m-35%201h2m1%200h1m1%200h1m1%200h1m1%200h1m2%200h1m1%200h3m2%200h1m2%200h7m2%200h2m1%200h1m-34%201h1m1%200h1m2%200h1m3%200h2m3%200h2m1%200h1m1%200h2m2%200h1m1%200h2m1%200h5m2%200h1m-35%201h2m1%200h1m2%200h2m2%200h1m1%200h3m5%200h1m5%200h5m3%200h1m-37%201h1m1%200h3m1%200h2m2%200h4m1%200h6m2%200h2m2%200h1m2%200h1m4%200h2m-37%201h2m3%200h1m2%200h3m1%200h1m1%200h1m1%200h1m2%200h2m1%200h2m1%200h1m1%200h2m2%200h1m1%200h2m-35%201h1m1%200h1m1%200h1m1%200h1m3%200h1m2%200h2m6%200h2m2%200h1m1%200h2m1%200h3m2%200h2m-37%201h1m1%200h2m1%200h1m2%200h1m2%200h2m1%200h2m3%200h1m2%200h1m1%200h1m1%200h6m1%200h2m1%200h1m-37%201h1m1%200h2m2%200h1m4%200h4m1%200h4m2%200h1m2%200h11m-28%201h2m4%200h2m1%200h1m1%200h2m2%200h1m3%200h2m3%200h1m1%200h2m-36%201h7m2%200h3m1%200h3m3%200h1m3%200h1m2%200h1m1%200h1m1%200h1m1%200h2m1%200h2m-37%201h1m5%200h1m3%200h1m5%200h3m1%200h1m1%200h3m2%200h2m3%200h1m2%200h2m-37%201h1m1%200h3m1%200h1m4%200h1m3%200h2m2%200h1m2%200h1m1%200h2m1%200h8m1%200h1m-37%201h1m1%200h3m1%200h1m4%200h1m1%200h1m2%200h5m2%200h1m2%200h3m1%200h1m2%200h1m2%200h1m-37%201h1m1%200h3m1%200h1m3%200h4m1%200h2m1%200h1m1%200h3m1%200h1m1%200h1m1%200h1m4%200h4m-37%201h1m5%200h1m2%200h2m1%200h3m4%200h1m2%200h2m2%200h3m1%200h4m2%200h1m-37%201h7m1%200h2m2%200h2m1%200h1m2%200h3m1%200h1m1%200h1m3%200h1m1%200h1m2%200h1m2%200h1%27%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E" alt="게임 접속 QR 코드">
+          <div class="q-label">휴대폰으로 함께 플레이하세요</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 10 · 마무리 -->
+  <!-- 10 · [05] 마무리 -->
   <section class="slide s-close">
     <svg class="portal" width="520" height="520" viewBox="0 0 620 620" aria-hidden="true" style="opacity:.35">
       <circle cx="310" cy="310" r="285" fill="none" stroke="#2E2843" stroke-width="1"/>
       <circle cx="310" cy="310" r="252" fill="none" stroke="#B8863B" stroke-width="1" stroke-dasharray="3 9"/>
       <circle cx="310" cy="310" r="180" fill="none" stroke="#E0B15E" stroke-width="1.2" stroke-dasharray="60 14 6 14" opacity=".6"/>
     </svg>
-    <div class="eyebrow" style="position:relative"><span class="no">09</span>배운 것들</div>
+    <div class="eyebrow" style="position:relative"><span class="no">05</span>마무리 — 배운 것들</div>
     <div class="learn cards" style="position:relative">
       <div class="card">
         <div class="tag">RAG</div>
@@ -607,17 +623,12 @@
       </div>
     </div>
     <div class="thanks">감사합니다</div>
-    <div class="team" style="display:flex;gap:14px;justify-content:center;align-items:center;position:relative">
-      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">김도윤</span>
-      <span style="width:4px;height:4px;border-radius:50%;background:var(--gold-deep)"></span>
-      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">김민석</span>
-      <span style="width:4px;height:4px;border-radius:50%;background:var(--gold-deep)"></span>
-      <span style="font-size:18px;font-weight:700;letter-spacing:.12em">이길주</span>
+    <div class="team">
+      <span class="name">김도윤</span><span class="dot"></span>
+      <span class="name">김민석</span><span class="dot"></span>
+      <span class="name">이길주</span>
     </div>
-    <a href="https://github.com/giljoo93/AWSBC202608" target="_blank" rel="noopener"
-       style="position:relative;margin-top:26px;display:inline-flex;align-items:center;gap:10px;
-              font-family:var(--mono);font-size:15px;color:var(--gold);text-decoration:none;
-              border:1px solid var(--gold-deep);border-radius:6px;padding:10px 20px">
+    <a class="gh-btn" href="https://github.com/giljoo93/AWSBC202608" target="_blank" rel="noopener">
       <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true" fill="currentColor">
         <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
       </svg>
@@ -625,9 +636,26 @@
     </a>
   </section>
 
+  <!-- 11 · [05] Q&A -->
+  <section class="slide s-qa">
+    <svg class="portal" width="620" height="620" viewBox="0 0 620 620" aria-hidden="true">
+      <circle cx="310" cy="310" r="285" fill="none" stroke="#2E2843" stroke-width="1"/>
+      <circle cx="310" cy="310" r="252" fill="none" stroke="#B8863B" stroke-width="1" stroke-dasharray="3 9" opacity=".8"/>
+      <circle cx="310" cy="310" r="216" fill="none" stroke="#3A3355" stroke-width="1"/>
+      <circle cx="310" cy="310" r="180" fill="none" stroke="#E0B15E" stroke-width="1.4" stroke-dasharray="60 14 6 14" opacity=".6"/>
+    </svg>
+    <h1>Q <em>&amp;</em> A</h1>
+    <p class="sub">무엇이든 물어보세요</p>
+    <div class="links">
+      <span>github.com/giljoo93/AWSBC202608</span>
+      <span style="color:var(--gold-deep)">·</span>
+      <span>데모는 앞 슬라이드 QR로 계속 열려 있습니다</span>
+    </div>
+  </section>
+
   <div id="hud">
     <div class="dots" id="dots"></div>
-    <div class="ctr" id="ctr">1 / 10</div>
+    <div class="ctr" id="ctr">1 / 11</div>
     <div class="keys">
       <button id="prev" aria-label="이전 슬라이드">←</button>
       <button id="next" aria-label="다음 슬라이드">→</button>
