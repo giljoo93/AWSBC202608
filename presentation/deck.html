@@ -99,9 +99,9 @@
   .diag-wrap{flex:1;display:flex;flex-direction:column;justify-content:center}
 
   /* ---------- S5 services ---------- */
-  .svc{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:30px}
-  .svc .card{padding:20px 20px 18px;gap:6px}
-  .svc .card h3{font-size:17.5px}
+  .svc{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:30px}
+  .svc .card{padding:18px 16px 16px;gap:6px}
+  .svc .card h3{font-size:16px}
   .svc .card .role{font-size:13.5px;color:var(--muted);line-height:1.55}
   .svc .card .spec{font-family:var(--mono);font-size:11.5px;color:var(--dim);margin-top:auto;padding-top:10px}
   .svc .aws{font-size:11px;letter-spacing:.2em;color:var(--gold);font-weight:500}
@@ -241,10 +241,10 @@
   <!-- 4 · 아키텍처 -->
   <section class="slide">
     <div class="eyebrow"><span class="no">03</span>시스템 아키텍처</div>
-    <h2>서울 리전 하나에 올린 풀스택 RAG</h2>
+    <h2>열린 문은 하나, 나가는 길도 하나</h2>
     <div class="diag-wrap">
       <figure>
-        <svg viewBox="0 0 1120 452" role="img" aria-label="플레이어 브라우저가 서울 리전 EC2의 FastAPI 서버와 JSON으로 통신한다. EC2는 같은 리전의 Bedrock에서 Claude를 Converse로, Knowledge Base를 Retrieve로 호출한다. S3 문서 버킷은 Titan 임베딩을 거쳐 S3 Vectors 인덱스로 수집된다. 모델 호출은 global 추론 프로필을 쓴다.">
+        <svg viewBox="0 0 1120 460" role="img" aria-label="플레이어는 퍼블릭 서브넷의 ALB 80 포트로만 접근한다. 게임 서버 EC2는 퍼블릭 IP 없이 프라이빗 서브넷에 있고, ALB에서만 8000 포트를 받는다. 아웃바운드는 NAT 게이트웨이를 거쳐 Bedrock의 Claude와 Knowledge Base를 호출한다. S3 문서는 Titan 임베딩으로 S3 Vectors 인덱스에 수집된다.">
           <defs>
             <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
               <path d="M0 0 L10 5 L0 10 z" fill="#A79FB8"/>
@@ -255,71 +255,99 @@
           </defs>
 
           <!-- player -->
-          <rect x="12" y="170" width="158" height="112" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="91" y="216" text-anchor="middle" fill="#EFEAE0" font-size="17" font-weight="700">플레이어</text>
-          <text x="91" y="240" text-anchor="middle" fill="#A79FB8" font-size="13">브라우저 · 챗 UI</text>
-          <text x="91" y="260" text-anchor="middle" fill="#6E668A" font-size="12">비주얼 노벨 프론트</text>
+          <rect x="10" y="126" width="140" height="96" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="80" y="166" text-anchor="middle" fill="#EFEAE0" font-size="16" font-weight="700">플레이어</text>
+          <text x="80" y="188" text-anchor="middle" fill="#A79FB8" font-size="12.5">브라우저 · 챗 UI</text>
 
-          <!-- Seoul region: everything -->
-          <rect x="234" y="36" width="874" height="400" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
-          <text x="252" y="64" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 서울 — 전 리소스 단일 리전</text>
-          <text x="252" y="82" fill="#6E668A" font-size="11.5" class="t-mono">ap-northeast-2</text>
+          <!-- VPC -->
+          <rect x="196" y="36" width="506" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="214" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">Amazon VPC — 서울</text>
+          <text x="500" y="62" fill="#6E668A" font-size="11.5" class="t-mono">10.0.0.0/16</text>
 
-          <rect x="256" y="102" width="300" height="296" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="276" y="132" fill="#EFEAE0" font-size="16.5" font-weight="700">Amazon EC2 · FastAPI</text>
-          <text x="276" y="152" fill="#6E668A" font-size="12" class="t-mono">t3.micro · systemd 상시 기동</text>
+          <!-- public subnet -->
+          <rect x="214" y="84" width="210" height="340" rx="6" fill="rgba(224,177,94,.04)" stroke="#3A3355"/>
+          <text x="232" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">퍼블릭 서브넷</text>
 
-          <rect x="276" y="170" width="260" height="56" rx="4" fill="rgba(143,168,216,.13)" stroke="#8FA8D8" stroke-opacity=".5"/>
-          <text x="292" y="193" fill="#8FA8D8" font-size="13.5" font-weight="700">engine — 점수 · MBTI 판정</text>
-          <text x="292" y="212" fill="#A79FB8" font-size="12">순수 코드 · 세션 인메모리</text>
+          <rect x="228" y="130" width="182" height="88" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
+          <text x="319" y="160" text-anchor="middle" fill="#E0B15E" font-size="15" font-weight="700">ALB</text>
+          <text x="319" y="181" text-anchor="middle" fill="#A79FB8" font-size="12">유일한 공개 진입점</text>
+          <text x="319" y="200" text-anchor="middle" fill="#6E668A" font-size="11.5" class="t-mono">:80 · 헬스체크 /health</text>
 
-          <rect x="276" y="238" width="260" height="56" rx="4" fill="rgba(224,177,94,.12)" stroke="#B8863B" stroke-opacity=".6"/>
-          <text x="292" y="261" fill="#E0B15E" font-size="13.5" font-weight="700">llm + rag — 연출 · 지식</text>
-          <text x="292" y="280" fill="#A79FB8" font-size="12">Bedrock 호출 · 실패 시 로컬 폴백</text>
+          <rect x="228" y="250" width="182" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="319" y="280" text-anchor="middle" fill="#EFEAE0" font-size="14.5" font-weight="700">NAT 게이트웨이</text>
+          <text x="319" y="301" text-anchor="middle" fill="#A79FB8" font-size="12">EC2 아웃바운드 전용</text>
+          <text x="319" y="320" text-anchor="middle" fill="#6E668A" font-size="11.5">들어오는 연결은 없음</text>
 
-          <rect x="276" y="322" width="124" height="30" rx="3" fill="none" stroke="#3A3355"/>
-          <text x="338" y="342" text-anchor="middle" fill="#A79FB8" font-size="12">IAM Role (키 없음)</text>
-          <rect x="412" y="322" width="124" height="30" rx="3" fill="none" stroke="#3A3355"/>
-          <text x="474" y="342" text-anchor="middle" fill="#A79FB8" font-size="12">SSM 접속·배포</text>
+          <!-- private subnet -->
+          <rect x="444" y="84" width="240" height="340" rx="6" fill="rgba(143,168,216,.04)" stroke="#3A3355"/>
+          <text x="462" y="110" fill="#A79FB8" font-size="12.5" letter-spacing="1">프라이빗 서브넷</text>
 
-          <!-- Bedrock inside Seoul -->
-          <rect x="616" y="102" width="460" height="72" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
-          <text x="636" y="131" fill="#E0B15E" font-size="16" font-weight="700">Bedrock · Claude Haiku 4.5</text>
-          <text x="636" y="154" fill="#A79FB8" font-size="12.5">Converse API — 장면 생성 · 내레이션 · 결과지 · Q&amp;A</text>
-          <text x="1056" y="131" text-anchor="end" fill="#6E668A" font-size="11.5" class="t-mono">global 추론 프로필</text>
+          <rect x="458" y="130" width="212" height="256" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="474" y="158" fill="#EFEAE0" font-size="15.5" font-weight="700">EC2 · FastAPI</text>
+          <text x="474" y="177" fill="#6E668A" font-size="11.5" class="t-mono">퍼블릭 IP 없음</text>
 
-          <rect x="616" y="196" width="460" height="82" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="636" y="225" fill="#EFEAE0" font-size="16" font-weight="700">Bedrock Knowledge Bases ×2</text>
-          <text x="636" y="247" fill="#A79FB8" font-size="12.5">story(세계관) · mbti(팀 자료) — 완전관리형 RAG</text>
-          <text x="636" y="266" fill="#6E668A" font-size="11.5" class="t-mono">Retrieve API</text>
+          <rect x="474" y="192" width="180" height="52" rx="4" fill="rgba(143,168,216,.13)" stroke="#8FA8D8" stroke-opacity=".5"/>
+          <text x="488" y="214" fill="#8FA8D8" font-size="13" font-weight="700">engine — 점수·판정</text>
+          <text x="488" y="232" fill="#A79FB8" font-size="11.5">순수 코드 · 인메모리 세션</text>
 
-          <rect x="616" y="306" width="200" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="636" y="334" fill="#EFEAE0" font-size="15" font-weight="700">S3 Vectors</text>
-          <text x="636" y="355" fill="#A79FB8" font-size="12">벡터 인덱스 ×2</text>
-          <text x="636" y="372" fill="#6E668A" font-size="11.5" class="t-mono">cosine</text>
+          <rect x="474" y="256" width="180" height="52" rx="4" fill="rgba(224,177,94,.12)" stroke="#B8863B" stroke-opacity=".6"/>
+          <text x="488" y="278" fill="#E0B15E" font-size="13" font-weight="700">llm + rag — 연출·지식</text>
+          <text x="488" y="296" fill="#A79FB8" font-size="11.5">실패 시 로컬 폴백</text>
 
-          <rect x="876" y="306" width="200" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
-          <text x="896" y="334" fill="#EFEAE0" font-size="15" font-weight="700">S3 문서 버킷</text>
-          <text x="896" y="355" fill="#A79FB8" font-size="12">세계관 · MBTI 원문</text>
-          <text x="896" y="372" fill="#6E668A" font-size="11.5" class="t-mono">story/ · mbti/</text>
+          <rect x="474" y="324" width="180" height="30" rx="3" fill="none" stroke="#3A3355"/>
+          <text x="564" y="344" text-anchor="middle" fill="#A79FB8" font-size="11.5">IAM Role · SSM (키·SSH 없음)</text>
+
+          <!-- regional services -->
+          <rect x="740" y="36" width="368" height="406" rx="8" fill="none" stroke="#3A3355" stroke-dasharray="6 6"/>
+          <text x="758" y="62" fill="#A79FB8" font-size="13" letter-spacing="2">AWS 관리형 서비스 — VPC 밖</text>
+
+          <rect x="756" y="84" width="336" height="76" rx="6" fill="#1D1930" stroke="#B8863B" stroke-opacity=".7"/>
+          <text x="772" y="112" fill="#E0B15E" font-size="15" font-weight="700">Bedrock · Claude Haiku 4.5</text>
+          <text x="772" y="133" fill="#A79FB8" font-size="12">장면 생성 · 내레이션 · 결과지 · Q&amp;A</text>
+          <text x="772" y="151" fill="#6E668A" font-size="11" class="t-mono">Converse · global 추론 프로필</text>
+
+          <rect x="756" y="182" width="336" height="76" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="772" y="210" fill="#EFEAE0" font-size="15" font-weight="700">Knowledge Bases ×2</text>
+          <text x="772" y="231" fill="#A79FB8" font-size="12">story(세계관) · mbti(팀 자료)</text>
+          <text x="772" y="249" fill="#6E668A" font-size="11" class="t-mono">Retrieve — 시맨틱 top-k</text>
+
+          <rect x="756" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="772" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 Vectors</text>
+          <text x="772" y="340" fill="#A79FB8" font-size="11.5">벡터 인덱스 ×2</text>
+          <text x="772" y="358" fill="#6E668A" font-size="11" class="t-mono">1024차원 cosine</text>
+
+          <rect x="932" y="292" width="160" height="88" rx="6" fill="#1D1930" stroke="#2E2843"/>
+          <text x="948" y="320" fill="#EFEAE0" font-size="14" font-weight="700">S3 문서 버킷</text>
+          <text x="948" y="340" fill="#A79FB8" font-size="11.5">세계관 · MBTI 원문</text>
+          <text x="948" y="358" fill="#6E668A" font-size="11" class="t-mono">story/ · mbti/</text>
+
+          <text x="924" y="414" text-anchor="middle" fill="#6E668A" font-size="11.5">Titan Embeddings V2로 청크 임베딩</text>
 
           <!-- arrows -->
-          <line x1="170" y1="226" x2="250" y2="226" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)" marker-start="url(#ar)"/>
-          <text x="210" y="212" text-anchor="middle" fill="#A79FB8" font-size="12">HTTPS · JSON</text>
+          <line x1="150" y1="174" x2="222" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)" marker-start="url(#ar)"/>
+          <text x="186" y="160" text-anchor="middle" fill="#A79FB8" font-size="12">HTTP :80</text>
 
-          <line x1="556" y1="200" x2="610" y2="150" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
-          <text x="596" y="182" text-anchor="middle" fill="#E0B15E" font-size="12.5">Converse</text>
+          <line x1="410" y1="174" x2="452" y2="174" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
+          <text x="431" y="160" text-anchor="middle" fill="#A79FB8" font-size="11.5">:8000</text>
 
-          <line x1="556" y1="266" x2="610" y2="248" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
-          <text x="588" y="278" text-anchor="middle" fill="#E0B15E" font-size="12.5">Retrieve</text>
+          <line x1="458" y1="294" x2="416" y2="294" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
 
-          <line x1="870" y1="344" x2="822" y2="344" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
-          <text x="846" y="332" text-anchor="middle" fill="#A79FB8" font-size="11.5">수집</text>
-          <line x1="716" y1="300" x2="716" y2="284" stroke="#A79FB8" stroke-width="1.6" marker-end="url(#ar)"/>
-          <text x="732" y="298" fill="#A79FB8" font-size="11.5">인덱스</text>
-          <text x="976" y="414" text-anchor="middle" fill="#6E668A" font-size="11.5">Titan Embeddings V2로 청크 임베딩</text>
+          <line x1="670" y1="200" x2="750" y2="130" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="716" y="158" text-anchor="middle" fill="#E0B15E" font-size="12">Converse</text>
+
+          <line x1="670" y1="262" x2="750" y2="228" stroke="#E0B15E" stroke-width="1.6" marker-end="url(#arg)"/>
+          <text x="708" y="258" text-anchor="middle" fill="#E0B15E" font-size="12">Retrieve</text>
+
+          <line x1="926" y1="336" x2="922" y2="336" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
+          <text x="924" y="284" text-anchor="middle" fill="#A79FB8" font-size="11">수집</text>
+          <line x1="836" y1="286" x2="836" y2="264" stroke="#A79FB8" stroke-width="1.4" marker-end="url(#ar)"/>
+
+          <!-- blocked direct access -->
+          <line x1="20" y1="404" x2="426" y2="404" stroke="#6E668A" stroke-width="1.4" stroke-dasharray="7 6"/>
+          <text x="440" y="409" fill="#E0B15E" font-size="15" font-weight="700">✕</text>
+          <text x="222" y="392" fill="#6E668A" font-size="11.5">인터넷 → EC2·데이터 직접 접근 차단 (SG: 8000은 ALB만 허용)</text>
         </svg>
-        <figcaption>점수·판정은 EC2의 코드가(<span class="steel">스틸</span>), 서사·지식은 Bedrock이(<span class="gold">골드</span>) — 모델 호출만 global 추론 프로필로 가용성 확보</figcaption>
+        <figcaption>공개된 문은 ALB의 80뿐 — EC2는 퍼블릭 IP 없이 NAT로 나가기만 하고, 점수는 코드(<span class="steel">스틸</span>)·서사는 모델(<span class="gold">골드</span>)</figcaption>
       </figure>
     </div>
   </section>
@@ -327,7 +355,7 @@
   <!-- 5 · AWS 서비스 -->
   <section class="slide">
     <div class="eyebrow"><span class="no">04</span>사용한 AWS 서비스</div>
-    <h2>7개 서비스, 각자 한 가지 일</h2>
+    <h2>10개 서비스, 각자 한 가지 일</h2>
     <div class="fill">
       <div class="svc">
         <div class="card">
@@ -359,6 +387,16 @@
           <div class="aws">STORAGE</div><h3>Amazon S3 Vectors</h3>
           <p class="role">임베딩 벡터 전용 스토리지 — 별도 벡터 DB 서버 없이 인덱스 운영</p>
           <div class="spec">인덱스 ×2</div>
+        </div>
+        <div class="card">
+          <div class="aws">NETWORK</div><h3>Amazon VPC</h3>
+          <p class="role">퍼블릭·프라이빗 서브넷 분리 — 서버는 NAT 게이트웨이로 나가기만</p>
+          <div class="spec">NAT GW · 10.0.0.0/16</div>
+        </div>
+        <div class="card">
+          <div class="aws">NETWORK</div><h3>ALB</h3>
+          <p class="role">유일한 공개 진입점 — 80 수신, 프라이빗 EC2의 8000으로 전달</p>
+          <div class="spec">헬스체크 /health</div>
         </div>
         <div class="card">
           <div class="aws">SECURITY</div><h3>AWS IAM</h3>
@@ -461,7 +499,7 @@
         <div class="card">
           <div class="tag">보안</div>
           <h3>액세스 키 0개</h3>
-          <p>EC2 IAM role이 자격증명을 공급하고 권한은 InvokeModel·Retrieve로 최소화. 서버 어디에도 키 파일이 없습니다.</p>
+          <p>EC2 IAM role이 자격증명을 공급하고 권한은 InvokeModel·Retrieve로 최소화. 서버는 프라이빗 서브넷 — 공개된 건 ALB의 80뿐입니다.</p>
         </div>
         <div class="card">
           <div class="tag">개발 경험</div>
@@ -525,8 +563,8 @@
     <div class="fill">
       <div>
         <div class="demo-url"><span style="font-size:13px;letter-spacing:.24em;color:var(--muted)">DEMO</span>
-          <span class="u">http://13.125.228.183:8000</span></div>
-        <div style="font-size:13px;color:var(--dim)">EC2 퍼블릭 IP — 인스턴스 재시작 시 변경될 수 있습니다</div>
+          <span class="u" style="font-size:17px">http://bipa-t1-project-cloade-alb-925957610.ap-northeast-2.elb.amazonaws.com</span></div>
+        <div style="font-size:13px;color:var(--dim)">ALB 도메인 — 유일한 공개 진입점. 게임 서버는 프라이빗 서브넷에서 퍼블릭 IP 없이 동작</div>
       </div>
       <div class="watch">
         <div class="card">
@@ -560,7 +598,7 @@
       <div class="card">
         <div class="tag">보안</div>
         <h3>키 없는 클라우드</h3>
-        <p>IAM role · SSM만으로 인증과 접속을 해결 — 자격증명 파일 없는 배포가 기본값이 될 수 있음을 배웠습니다.</p>
+        <p>IAM role · SSM · 프라이빗 서브넷으로 키도, SSH도, 열린 포트도 없는 배포 — 잠근 채로 운영하는 법을 배웠습니다.</p>
       </div>
       <div class="card">
         <div class="tag">AI 설계</div>
