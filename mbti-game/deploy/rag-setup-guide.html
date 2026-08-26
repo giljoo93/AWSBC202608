@@ -114,7 +114,7 @@
 
 <h2><span class="n">1</span>S3 버킷 만들기</h2>
 <ol class="steps">
-  <li>AWS 콘솔 접속 → 오른쪽 위 리전이 <b>버지니아 북부(us-east-1)</b>인지 확인 (EC2·Bedrock과 같은 리전이어야 합니다).</li>
+  <li>AWS 콘솔 접속 → 오른쪽 위 리전이 <b>서울(ap-northeast-2)</b>인지 확인 (EC2·Bedrock과 같은 리전이어야 합니다).</li>
   <li>검색창에 <b>S3</b> 입력 → <b>버킷 만들기(Create bucket)</b> 클릭.</li>
   <li>버킷 이름: <code>mbti-game-kb-이름이니셜</code> (전 세계에서 유일해야 하므로 이니셜·숫자를 붙이세요).</li>
   <li>나머지는 전부 기본값 그대로 → <b>버킷 만들기</b>.</li>
@@ -175,7 +175,7 @@
     {
       "Effect": "Allow",
       "Action": ["bedrock:Retrieve"],
-      "Resource": "arn:aws:bedrock:us-east-1:*:knowledge-base/*"
+      "Resource": "arn:aws:bedrock:ap-northeast-2:*:knowledge-base/*"
     }
   ]
 }</code></pre>

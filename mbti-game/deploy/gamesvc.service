@@ -6,9 +6,9 @@ After=network.target
 User=ec2-user
 WorkingDirectory=/home/ec2-user/mbti-game
 Environment=GAME_LLM=bedrock
-Environment=AWS_REGION=us-east-1
+Environment=AWS_REGION=ap-northeast-2
 # Bedrock 콘솔 '모델 액세스'에서 활성화한 모델 id로 교체
-Environment=GAME_BEDROCK_MODEL=CHANGE_ME
+Environment=GAME_BEDROCK_MODEL=global.anthropic.claude-haiku-4-5-20251001-v1:0
 # Knowledge Base id (콘솔에서 생성 후 10자리 id 입력). 비우면 로컬 JSON으로 동작.
 Environment=GAME_KB_STORY=
 Environment=GAME_KB_MBTI=
